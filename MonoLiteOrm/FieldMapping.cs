@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using Mono.Data.SqliteClient;
-using UnityEngine;
 
 namespace Mono.Ormo
 {
@@ -25,7 +24,6 @@ namespace Mono.Ormo
 			}
 			this.IsId = AttributeUtils.isAttributePresent<Id>(field);
 			this.converter = FieldConverterFactory.getConverter(field.FieldType);
-			Debug.Log (this.converter);
 		}
 		
 		private string generateColumnName(string fieldName) {

@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using Mono.Data.SqliteClient;
-using UnityEngine;
 
 namespace Mono.Ormo
 {
@@ -33,7 +32,6 @@ namespace Mono.Ormo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getInsertQuery();
 			query = mapp.toSQLParams(query, obj);
-			Debug.Log(query);
 			SqliteCommand cmd = new SqliteCommand(query, con);
 			int affectedRows = cmd.ExecuteNonQuery();
 			mapp.setIdValue(obj, con.LastInsertRowId);
@@ -43,7 +41,6 @@ namespace Mono.Ormo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getUpdateQuery();
 			query = mapp.toSQLParams(query, obj);
-			Debug.Log(query);
 			SqliteCommand cmd = new SqliteCommand(query, con);
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
@@ -52,9 +49,13 @@ namespace Mono.Ormo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getDeleteQuery();
 			query = String.Format (query, mapp.getIdValue(obj));
-			Debug.Log(query);
+			//Debug.Log(query);
 			SqliteCommand cmd = new SqliteCommand(query, con);
 			int affectedRows = cmd.ExecuteNonQuery();
+		}
+		
+		public System.Data.IDbTransaction startTransaction() {
+			return con.BeginTransaction();	
 		}
 		
 	}

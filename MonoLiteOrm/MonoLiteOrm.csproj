@@ -33,8 +33,29 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AttributeUtils.cs" />
+    <Compile Include="ClassMapping.cs" />
+    <Compile Include="DatabaseMappings.cs" />
+    <Compile Include="EntityManager.cs" />
+    <Compile Include="EntityManagerFactory.cs" />
+    <Compile Include="FieldConverter.cs" />
+    <Compile Include="FieldConverterFactory.cs" />
+    <Compile Include="FieldMapping.cs" />
+    <Compile Include="Ormo.cs" />
+    <Compile Include="PersistenceContextConfig.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="Attributes\Column.cs" />
+    <Compile Include="Attributes\Entity.cs" />
+    <Compile Include="Attributes\Id.cs" />
+    <Compile Include="Attributes\Table.cs" />
+    <Compile Include="Attributes\Transient.cs" />
+    <Compile Include="Converters\BooleanFieldConverter.cs" />
+    <Compile Include="Converters\DateFieldConverter.cs" />
+    <Compile Include="Converters\DoubleFieldConverter.cs" />
+    <Compile Include="Converters\FloatFieldConverter.cs" />
+    <Compile Include="Converters\IntFieldConverter.cs" />
+    <Compile Include="Converters\StringFieldConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

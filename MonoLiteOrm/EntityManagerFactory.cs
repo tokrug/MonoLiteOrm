@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		public EntityManagerFactory (PersistenceContextConfig config)
 		{
 			this.config = config;
-			mappings = DatabaseMappings.mappingOf(this.config);
+			mappings = new DatabaseMappings(this.config);
 		}
 		
 		public EntityManager getEntityManager() {

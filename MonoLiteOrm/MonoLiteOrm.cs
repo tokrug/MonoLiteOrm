@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
-	public class Ormo
+	public class MonoLiteOrm
 	{
-		private Ormo ()
+		private MonoLiteOrm ()
 		{
 		}
 		

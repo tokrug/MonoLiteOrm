@@ -52,7 +52,6 @@
     <Compile Include="FieldConverter.cs" />
     <Compile Include="FieldConverterFactory.cs" />
     <Compile Include="FieldMapping.cs" />
-    <Compile Include="Ormo.cs" />
     <Compile Include="PersistenceContextConfig.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Attributes\Column.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Converters\FloatFieldConverter.cs" />
     <Compile Include="Converters\IntFieldConverter.cs" />
     <Compile Include="Converters\StringFieldConverter.cs" />
+    <Compile Include="MonoLiteOrm.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

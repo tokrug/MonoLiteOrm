@@ -1,6 +1,6 @@
 using System;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	// optional attribute 
 	// used if table name does not conform to convention

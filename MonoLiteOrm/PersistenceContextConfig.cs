@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	// assemblies and database name
 	public class PersistenceContextConfig

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using Mono.Data.SqliteClient;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	public class ClassMapping
 	{

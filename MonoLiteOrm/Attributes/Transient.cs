@@ -1,6 +1,6 @@
 using System;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	// marker, do not persist
 	[AttributeUsage(AttributeTargets.Field)]

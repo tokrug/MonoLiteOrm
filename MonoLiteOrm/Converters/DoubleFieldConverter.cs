@@ -1,7 +1,7 @@
 using System;
 using Mono.Data.SqliteClient;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	public class DoubleFieldConverter : FieldConverter
 	{

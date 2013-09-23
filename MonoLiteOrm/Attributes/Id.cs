@@ -1,6 +1,6 @@
 using System;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	// marks the id field, mandatory
 	[AttributeUsage(AttributeTargets.Field)]

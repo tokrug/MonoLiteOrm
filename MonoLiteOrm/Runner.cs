@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	public class Runner
 	{

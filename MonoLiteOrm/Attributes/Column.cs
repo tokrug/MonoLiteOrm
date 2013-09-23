@@ -1,6 +1,6 @@
 using System;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	// marks the field as persistent, default for private fields
 	[AttributeUsage(AttributeTargets.Field)]

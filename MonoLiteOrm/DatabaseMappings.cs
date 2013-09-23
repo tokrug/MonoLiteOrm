@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	public class DatabaseMappings
 	{

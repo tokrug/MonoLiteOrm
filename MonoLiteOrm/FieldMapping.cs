@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using Mono.Data.SqliteClient;
 
-namespace Mono.Ormo
+namespace Mono.Mlo
 {
 	public class FieldMapping
 	{

@@ -10,6 +10,8 @@ namespace Mono.Mlo
 		private SqliteConnection con;
 		private DatabaseMappings mapping;
 		
+		private Transaction transaction;
+		
 		public EntityManager (SqliteConnection con, DatabaseMappings mappings)
 		{
 			this.con = con;
@@ -54,8 +56,9 @@ namespace Mono.Mlo
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		
-		public System.Data.IDbTransaction startTransaction() {
-			return con.BeginTransaction();	
+		public Transaction startTransaction() {
+			this.transaction = new Transaction(con.BeginTransaction());
+			return this.transaction;
 		}
 		
 	}

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Data;
 using Mono.Data.SqliteClient;
 
 namespace Mono.Mlo
@@ -7,12 +8,12 @@ namespace Mono.Mlo
 	public class EntityManager
 	{
 		// it has to be injected somehow
-		private SqliteConnection con;
+		private IDbConnection con;
 		private DatabaseMappings mapping;
 		
 		private Transaction transaction;
 		
-		public EntityManager (SqliteConnection con, DatabaseMappings mappings)
+		public EntityManager (IDbConnection con, DatabaseMappings mappings)
 		{
 			this.con = con;
 			this.mapping = mappings;
@@ -22,8 +23,9 @@ namespace Mono.Mlo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getLoadQuery();
 			query = String.Format (query, id);
-			SqliteCommand cmd = new SqliteCommand(query, con);
-			SqliteDataReader reader = cmd.ExecuteReader();
+			IDbCommand cmd = con.CreateCommand();
+			cmd.CommandText = query;
+			IDataReader reader = cmd.ExecuteReader();
 			if (reader.Read()) {
 				return (T) mapp.toObject(reader);
 			} else
@@ -34,16 +36,18 @@ namespace Mono.Mlo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getInsertQuery();
 			query = mapp.toSQLParams(query, obj);
-			SqliteCommand cmd = new SqliteCommand(query, con);
+			IDbCommand cmd = con.CreateCommand();
+			cmd.CommandText = query;
 			int affectedRows = cmd.ExecuteNonQuery();
-			mapp.setIdValue(obj, con.LastInsertRowId);
+			// does not retrieve ID!!!!!!!!!!!!!!!!
 		}
 		
 		public void update<T>(T obj) {
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getUpdateQuery();
 			query = mapp.toSQLParams(query, obj);
-			SqliteCommand cmd = new SqliteCommand(query, con);
+			IDbCommand cmd = con.CreateCommand();
+			cmd.CommandText = query;
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		
@@ -51,8 +55,8 @@ namespace Mono.Mlo
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = mapp.getDeleteQuery();
 			query = String.Format (query, mapp.getIdValue(obj));
-			//Debug.Log(query);
-			SqliteCommand cmd = new SqliteCommand(query, con);
+			IDbCommand cmd = con.CreateCommand();
+			cmd.CommandText = query;
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		

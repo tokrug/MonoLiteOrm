@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using Mono.Data.SqliteClient;
+using System.Data;
 
 namespace Mono.Mlo
 {
@@ -168,7 +168,7 @@ namespace Mono.Mlo
 			return this.updateQuery;
 		}
 		
-		public object toObject(SqliteDataReader reader) {
+		public object toObject(IDataReader reader) {
 			object newInstance = Activator.CreateInstance(this.type);
 			idField.assignProperty(newInstance, reader, 0);
 			int i = 1;

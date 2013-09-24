@@ -1,5 +1,5 @@
 using System;
-using Mono.Data.SqliteClient;
+using System.Data;
 
 namespace Mono.Mlo
 {
@@ -16,7 +16,7 @@ namespace Mono.Mlo
 				return obj.ToString ();
 		}
 		
-		public object toObject(SqliteDataReader reader, int ordinal) {
+		public object toObject(IDataReader reader, int ordinal) {
 			return reader.GetFloat(ordinal);
 		}
 		

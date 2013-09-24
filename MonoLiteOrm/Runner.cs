@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Data.SqlClient;
 
 namespace Mono.Mlo
 {
@@ -10,7 +11,9 @@ namespace Mono.Mlo
 		
 	    public static void Main()
 	    {
-
+			SqlConnection con = new SqlConnection("sadf");
+			SqlCommand com = new SqlCommand();
+			com.Connection = con;
 	    }
 	}
 }

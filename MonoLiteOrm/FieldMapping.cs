@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Mono.Data.SqliteClient;
+using System.Data;
 
 namespace Mono.Mlo
 {
@@ -38,7 +38,7 @@ namespace Mono.Mlo
 			}
 		}
 		
-		public void assignProperty(object instance, SqliteDataReader reader, int ordinal) {
+		public void assignProperty(object instance, IDataReader reader, int ordinal) {
 			this.Field.SetValue(instance, converter.toObject(reader, ordinal));
 		}
 		

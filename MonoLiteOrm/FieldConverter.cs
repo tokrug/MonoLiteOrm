@@ -1,5 +1,5 @@
 using System;
-using Mono.Data.SqliteClient;
+using System.Data;
 
 namespace Mono.Mlo
 {
@@ -8,7 +8,7 @@ namespace Mono.Mlo
 		
 		string toDatabase(object obj);
 		
-		object toObject(SqliteDataReader reader, int ordinal);
+		object toObject(IDataReader reader, int ordinal);
 		
 		string getColumnTypeName();
 		

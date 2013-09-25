@@ -29,7 +29,7 @@ namespace Mono.Mlo
 				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
 			}
 			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdField.Column.Name, EqualTo = "@" + classMapping.IdField.Field.Field.Name}};
+			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
 		}
 		
 		private void insertQuery() {
@@ -47,7 +47,7 @@ namespace Mono.Mlo
 		private void deleteQuery() {
 			DeleteStatementBuilder builder = new DeleteStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdField.Column.Name, EqualTo = "@" + classMapping.IdField.Field.Field.Name}};
+			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
 		}
 		
 	}

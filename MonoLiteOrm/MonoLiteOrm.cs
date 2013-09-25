@@ -57,7 +57,7 @@ namespace Mono.Mlo
 					mapping.addPropertyMapping (fieldMapping);
 					Id idAttr = AttributeUtils.getSingleAttribute<Id>(field);
 					if (idAttr != null) {
-						mapping.IdField = fieldMapping;
+						mapping.IdMapping = fieldMapping;
 						column.IsPrimaryKey = true;
 						persistentField.IsId = true;
 					}

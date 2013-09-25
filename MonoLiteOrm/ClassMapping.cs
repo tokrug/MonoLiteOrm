@@ -58,6 +58,32 @@ namespace Mono.Mlo
 			return !AttributeUtils.isAttributePresent<Transient>(field) && !typeof(ICollection<>).IsAssignableFrom(field.GetType());
 		}
 		
+		// with parameters
+		private void createInsertQuery2() {
+			IDbCommand command = new Mono.Data.SqliteClient.SqliteCommand();
+			
+			// create query text
+			StringBuilder build = new StringBuilder();
+			build.Append ("INSERT INTO ");
+			build.Append(this.tableName);
+			build.Append (" (");
+			build.Append (this.createColumnList());
+			build.Append (") VALUES (");
+			foreach (FieldMapping fieldMap in this.fieldMappings.Values) {
+				build.Append ("@" + fieldMap.Field.Name + ", ");
+			}
+			build.Remove (build.Length-2,2);
+			build.Append (");");
+			
+			command.CommandText = build.ToString ();
+			
+			// create parameters
+			foreach (FieldMapping fieldMap in this.fieldMappings.Values) {
+				IDbDataParameter param = command.CreateParameter();
+				param.ParameterName = "@" + fieldMap.Field.Name;
+			}
+		}
+		
 		private string createInsertQuery() {
 			StringBuilder build = new StringBuilder();
 			build.Append ("INSERT INTO ");

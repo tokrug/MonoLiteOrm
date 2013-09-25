@@ -61,6 +61,13 @@
     <Compile Include="Converters\StringFieldConverter.cs" />
     <Compile Include="MonoLiteOrm.cs" />
     <Compile Include="Transaction.cs" />
+    <Compile Include="InsertQueryBuilder.cs" />
+    <Compile Include="EntityAdapter.cs" />
+    <Compile Include="Tables\TableDefinition.cs" />
+    <Compile Include="Tables\TableColumn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Tables\" />
+  </ItemGroup>
 </Project>

@@ -8,33 +8,30 @@ namespace Mono.Mlo
 	{
 		private Dictionary<Type, ClassMapping> classMappings = new Dictionary<Type, ClassMapping>();
 		
-		public DatabaseMappings(PersistenceContextConfig config) {
-			// convert names to assembly objects
-			IEnumerable<Assembly> assemblies = getAssemblies(config.Assemblies);
-			IEnumerable<Type> persistentTypes = AttributeUtils.GetTypesWithAttribute<Entity>(assemblies);
-			
-			foreach (Type type in persistentTypes) {
-				this.classMappings.Add (type, new ClassMapping(type));	
-			}
+		public DatabaseMappings() {
 	
-		}
-		
-		private static IEnumerable<Assembly> getAssemblies(IEnumerable<string> assNames) {
-			foreach (string name in assNames) {
-				yield return Assembly.Load (name);	
-			}
 		}
 		
 		public ClassMapping getMapping<T>() {
 			return classMappings[typeof(T)];
 		}
 		
+		/// <summary>
+		/// Returns the list of class mappings. It is an independent copy of the list used internally.
+		/// </summary>
+		/// <returns>
+		/// The mappings.
+		/// </returns>
 		public List<ClassMapping> getMappings() {
 			List<ClassMapping> result = new List<ClassMapping>();
 			foreach (ClassMapping map in classMappings.Values) {
 				result.Add (map);
 			}
 			return result;
+		}
+		
+		public void addMapping(ClassMapping mapping) {
+			this.classMappings.Add (mapping.ClassType, mapping);	
 		}
 	}
 }

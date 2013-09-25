@@ -1,20 +1,26 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
-	// assemblies and database name
+	/// <summary>
+	/// Persistence context config. Basic information needed for ORM to work.
+	/// </summary>
 	public class PersistenceContextConfig
 	{
-		private List<string> assemblies = new List<string>();
+		private List<Assembly> assemblies = new List<Assembly>();
 		
 		public string DatabaseName {get;set;}
 		public int DatabaseVersion {get;set;}
-		public List<string> Assemblies {get {return assemblies;}}
+		public List<Assembly> Assemblies {get {return assemblies;}}
 		
 		public PersistenceContextConfig ()
 		{
-			
+		}
+		
+		public void addAssembly(string assemblyName) {
+			this.assemblies.Add (Assembly.Load (assemblyName));
 		}
 	}
 }

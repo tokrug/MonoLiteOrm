@@ -5,37 +5,17 @@ using System.Data;
 namespace Mono.Mlo
 {
 	public class FieldMapping
-	{
-		
-		public FieldInfo Field {get;set;}
-		public bool IsId {get;set;}
-		
-		public string ColumnName {get;set;}
+	{	
+		public PersistentField Field {get;set;}
+		public TableColumn Column {get;set;}
 		
 		private FieldConverter converter;
 		
-		public FieldMapping(FieldInfo field) {
+		public FieldMapping() {}
+		
+		public FieldMapping(PersistentField field) {
 			this.Field = field;
-			Column colAttr = AttributeUtils.getSingleAttribute<Column>(field);
-			if (colAttr != null) {
-				this.ColumnName = colAttr.Name;
-			} else {
-				this.ColumnName = generateColumnName(field.Name);
-			}
-			this.IsId = AttributeUtils.isAttributePresent<Id>(field);
-			this.converter = FieldConverterFactory.getConverter(field.FieldType);
-		}
-		
-		private string generateColumnName(string fieldName) {
-			return fieldName;	
-		}
-		
-		public string getColumnDefinition() {
-			if (IsId) {
-				return ColumnName + " " + converter.getColumnTypeName() + " PRIMARY KEY ASC";	
-			} else {
-				return ColumnName + " " + converter.getColumnTypeName();	
-			}
+			this.converter = FieldConverterFactory.getConverter(field.Field.FieldType);
 		}
 		
 		public void assignProperty(object instance, IDataReader reader, int ordinal) {

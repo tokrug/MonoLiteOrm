@@ -10,10 +10,10 @@ namespace Mono.Mlo
 		
 		private PersistenceContextConfig config;
 		
-		public EntityManagerFactory (PersistenceContextConfig config)
+		public EntityManagerFactory (PersistenceContextConfig config, DatabaseMappings mappings)
 		{
 			this.config = config;
-			mappings = new DatabaseMappings(this.config);
+			this.mappings = mappings;
 		}
 		
 		public EntityManager getEntityManager() {
@@ -32,7 +32,7 @@ namespace Mono.Mlo
 		public string getSchemaScript() {
 			StringBuilder build = new StringBuilder();
 			foreach (ClassMapping map in mappings.getMappings()) {
-				build.Append (map.getSchemaScript()).AppendLine();
+				build.Append (map.CorrespondingTable.getTableSchema()).AppendLine();
 			}
 			return build.ToString();
 		}

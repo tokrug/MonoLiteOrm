@@ -19,16 +19,16 @@ namespace Mono.Mlo
 			this.mapping = mappings;
 		}
 		
-		public T load2<T>(int id) {
-			ClassMapping mapp = mapping.getMapping<T>();
-			EntityAdapter<T> adapt = new EntityAdapter<T>(mapp, this.con);
-			string query = mapp.getLoadQuery();
+		public T load2<T>(int id) where T : new() {
+			ClassMapping classMapping = mapping.getMapping<T>();
+			EntityAdapter<T> adapt = new EntityAdapter<T>(classMapping, this.con);
+			string query = classMapping.getLoadQuery();
 			query = String.Format (query, id);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
 			IDataReader reader = cmd.ExecuteReader();
 			if (reader.Read()) {
-				return (T) mapp.toObject(reader);
+				return (T) classMapping.toObject(reader);
 			} else
 				return default(T);
 		}

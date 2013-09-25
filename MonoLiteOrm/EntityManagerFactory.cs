@@ -21,8 +21,10 @@ namespace Mono.Mlo
 		}
 		
 		public SqliteConnection getNewConnection() {
-			string cs = "URI=file:"+config.DatabaseName+",version="+config.DatabaseVersion;
-			SqliteConnection con = new SqliteConnection(cs);
+			SqliteConnectionStringBuilder conStringBuilder = new SqliteConnectionStringBuilder();
+			conStringBuilder.Uri = "file:" + config.DatabaseName;
+			conStringBuilder.Version = config.DatabaseVersion;
+			SqliteConnection con = new SqliteConnection(conStringBuilder.ConnectionString);
 			con.Open ();
 			return con;
 		}

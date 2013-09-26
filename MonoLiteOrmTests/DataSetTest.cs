@@ -24,7 +24,7 @@ namespace MonoLiteOrmTests
 			
 			var retrievedTable = dataSet[mockTableName];
 			
-			Assert.AreSame(retrievedTable, mock.Object);
+			Assert.AreSame(mock.Object, retrievedTable);
 			
 		}
 	}

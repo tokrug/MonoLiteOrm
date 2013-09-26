@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataSetTest.cs" />
+    <Compile Include="TableColumnTest.cs" />
+    <Compile Include="TableDefinitionTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

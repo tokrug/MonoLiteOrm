@@ -11,7 +11,7 @@ namespace Mono.Mlo
 	{
 		private List<Assembly> assemblies = new List<Assembly>();
 		
-		public virtual string DatabaseName {get;set;}
+		public virtual string DatabaseUri {get;set;}
 		public virtual int DatabaseVersion {get;set;}
 		public virtual List<Assembly> Assemblies {get {return assemblies;}}
 		

@@ -38,7 +38,7 @@ namespace Mono.Mlo
 			
 			build.Append ("CREATE TABLE ");
 			build.Append (this.Name);
-			build.Append ("(");
+			build.Append (" (");
 			foreach (TableColumn col in this.columns) {
 				columnDefinitions.Add (col.getColumnDefinition());
 			}

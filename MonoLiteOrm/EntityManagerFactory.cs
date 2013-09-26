@@ -22,7 +22,7 @@ namespace Mono.Mlo
 		
 		public virtual SqliteConnection getNewConnection() {
 			SqliteConnectionStringBuilder conStringBuilder = new SqliteConnectionStringBuilder();
-			conStringBuilder.Uri = "file:" + config.DatabaseName;
+			conStringBuilder.Uri = config.DatabaseUri;
 			conStringBuilder.Version = config.DatabaseVersion;
 			SqliteConnection con = new SqliteConnection(conStringBuilder.ConnectionString);
 			con.Open ();

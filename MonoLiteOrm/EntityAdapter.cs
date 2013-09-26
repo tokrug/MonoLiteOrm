@@ -15,11 +15,11 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public List<T> toEntities<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+		public virtual List<T> toEntities<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
 			return null;	
 		}
 		
-		public T toEntity<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+		public virtual T toEntity<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
 			if (dataSet[mapping.CorrespondingTable.Name].RowCount > 0) {
 				return mapEntityProperties<T>(dataSet[mapping.CorrespondingTable.Name].Rows[0], mapping);
 			} else {

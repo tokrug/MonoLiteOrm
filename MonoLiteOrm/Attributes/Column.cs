@@ -7,7 +7,8 @@ namespace Mono.Mlo
 	public class Column : System.Attribute
 	{
 		private string name;
-		public string Name {get {return this.name;}}
+		
+		public virtual string Name {get {return this.name;}}
 		
 		public Column (string name)
 		{

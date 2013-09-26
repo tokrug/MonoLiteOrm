@@ -11,10 +11,10 @@ namespace Mono.Mlo
 		
 		private List<SelectColumn> selectedColumns = new List<SelectColumn>();
 		
-		public List<SelectColumn> SelectedColumns {get{return this.selectedColumns;}}
-		public WhereClause Where {get;set;}
-		public FromClause From {get;set;}
-		public OrderClause Order {get;set;}
+		public virtual List<SelectColumn> SelectedColumns {get{return this.selectedColumns;}}
+		public virtual WhereClause Where {get;set;}
+		public virtual FromClause From {get;set;}
+		public virtual OrderClause Order {get;set;}
 		
 		public NativeQueryBuilder ()
 		{

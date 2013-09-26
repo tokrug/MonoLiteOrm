@@ -5,7 +5,7 @@ namespace Mono.Mlo
 	public class WhereClause
 	{
 		
-		public EqualCondition Equality {get;set;}
+		public virtual EqualCondition Equality {get;set;}
 		
 		public WhereClause ()
 		{

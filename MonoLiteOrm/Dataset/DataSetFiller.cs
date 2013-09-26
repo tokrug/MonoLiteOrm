@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public DataSet queryResultToDataSet(IDataReader reader, TableDefinition table) {
+		public virtual DataSet queryResultToDataSet(IDataReader reader, TableDefinition table) {
 			DataSet dataSet = new DataSet();
 			DataTable mainTable = definitionToDataTable(table);
 			dataSet.Tables.Add (mainTable);

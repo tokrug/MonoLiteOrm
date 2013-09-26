@@ -11,7 +11,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public string selectAllQuery(ClassMapping classMapping) {
+		public virtual string selectAllQuery(ClassMapping classMapping) {
 			NativeQueryBuilder builder = new NativeQueryBuilder();
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
 				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
@@ -20,7 +20,7 @@ namespace Mono.Mlo
 			return builder.ToString ();
 		}
 		
-		public string selectByIdQuery(ClassMapping classMapping) {
+		public virtual string selectByIdQuery(ClassMapping classMapping) {
 			NativeQueryBuilder builder = new NativeQueryBuilder();
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
 				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
@@ -30,7 +30,7 @@ namespace Mono.Mlo
 			return builder.ToString ();
 		}
 		
-		public string insertQuery(ClassMapping classMapping) {
+		public virtual string insertQuery(ClassMapping classMapping) {
 			InsertStatementBuilder builder = new InsertStatementBuilder();
 			ValueSet singleSet = new ValueSet();
 			builder.ValueSets.Add (singleSet);
@@ -41,14 +41,14 @@ namespace Mono.Mlo
 			return builder.ToString();
 		}
 		
-		public string deleteQuery(ClassMapping classMapping) {
+		public virtual string deleteQuery(ClassMapping classMapping) {
 			DeleteStatementBuilder builder = new DeleteStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
 			return builder.ToString ();
 		}
 		
-		public string updateQuery(ClassMapping classMapping) {
+		public virtual string updateQuery(ClassMapping classMapping) {
 			UpdateStatementBuilder builder = new UpdateStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {

@@ -7,9 +7,9 @@ namespace Mono.Mlo
 	{
 		private List<string> values = new List<string>();
 		
-		public List<string> Values {get{return this.values;}}
+		public virtual List<string> Values {get{return this.values;}}
 		
-		public string this[int i] {
+		public virtual string this[int i] {
 			get {
 				return this.values[i];	
 			}
@@ -22,7 +22,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public void addParameter(string paramName) {
+		public virtual void addParameter(string paramName) {
 			values.Add ("@" + paramName);
 		}
 		

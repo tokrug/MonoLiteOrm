@@ -12,11 +12,11 @@ namespace Mono.Mlo
 			this.transaction = transaction;
 		}
 		
-		public void commit() {
+		public virtual void commit() {
 			transaction.Commit();	
 		}
 		
-		public void rollback() {
+		public virtual void rollback() {
 			transaction.Rollback();	
 		}
 	}

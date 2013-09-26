@@ -10,10 +10,10 @@ namespace Mono.Mlo
 		private List<string> columns = new List<string>();
 		private ValueSet values = new ValueSet();
 		
-		public string TableName {get;set;}
-		public List<string> Columns {get{return this.columns;}}
-		public ValueSet Values {get{return this.values;}}
-		public WhereClause Where {get;set;}
+		public virtual string TableName {get;set;}
+		public virtual List<string> Columns {get{return this.columns;}}
+		public virtual ValueSet Values {get{return this.values;}}
+		public virtual WhereClause Where {get;set;}
 		
 		public UpdateStatementBuilder ()
 		{
@@ -29,6 +29,7 @@ namespace Mono.Mlo
 			builder.Remove (builder.Length-2,2);
 			builder.Append(Where.ToString ());
 			builder.Append (";");
+			return builder.ToString ();
 		}
 	}
 }

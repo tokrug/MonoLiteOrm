@@ -5,7 +5,7 @@ namespace Mono.Mlo
 	public class FromClause
 	{
 		
-		public TableReference Source {get;set;}
+		public virtual TableReference Source {get;set;}
 		
 		public FromClause ()
 		{

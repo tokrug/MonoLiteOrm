@@ -6,8 +6,8 @@ namespace Mono.Mlo
 	public class PersistentField
 	{
 		
-		public FieldInfo Field {get;set;}
-		public bool IsId {get;set;}
+		public virtual FieldInfo Field {get;set;}
+		public virtual bool IsId {get;set;}
 		
 		public PersistentField ()
 		{

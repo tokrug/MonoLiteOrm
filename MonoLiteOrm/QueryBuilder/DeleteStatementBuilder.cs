@@ -5,8 +5,8 @@ namespace Mono.Mlo
 	public class DeleteStatementBuilder
 	{
 		
-		public string TableName {get;set;}
-		public WhereClause Where {get;set;}
+		public virtual string TableName {get;set;}
+		public virtual WhereClause Where {get;set;}
 		
 		public DeleteStatementBuilder ()
 		{

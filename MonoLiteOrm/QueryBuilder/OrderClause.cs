@@ -8,7 +8,7 @@ namespace Mono.Mlo
 		
 		private List<OrderByElement> orderBy = new List<OrderByElement>();
 		
-		public List<OrderByElement> OrderBy {get{return this.orderBy;}}
+		public virtual List<OrderByElement> OrderBy {get{return this.orderBy;}}
 		
 		public OrderClause ()
 		{

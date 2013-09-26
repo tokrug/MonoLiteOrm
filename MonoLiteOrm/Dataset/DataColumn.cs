@@ -8,8 +8,8 @@ namespace Mono.Mlo
 	public class DataColumn
 	{
 		
-		public string Name {get;set;}
-		public DataTable Table {get;set;}
+		public virtual string Name {get;set;}
+		public virtual DataTable Table {get;set;}
 		
 		public DataColumn ()
 		{

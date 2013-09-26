@@ -12,13 +12,13 @@ namespace Mono.Mlo
 		
 		private List<DataTable> tables = new List<DataTable>();
 		
-		public List<DataTable> Tables {get{return this.tables;}}
+		public virtual List<DataTable> Tables {get{return this.tables;}}
 		
 		public DataSet ()
 		{
 		}
 		
-		public DataTable this[string tableName] {
+		public virtual DataTable this[string tableName] {
 			get {
 				return tables.Find((x) => x.Name.Equals (tableName));	
 			}

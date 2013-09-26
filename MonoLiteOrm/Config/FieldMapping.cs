@@ -6,8 +6,8 @@ namespace Mono.Mlo
 {
 	public class FieldMapping
 	{	
-		public PersistentField Field {get;set;}
-		public TableColumn Column {get;set;}
+		public virtual PersistentField Field {get;set;}
+		public virtual TableColumn Column {get;set;}
 		
 		public FieldMapping() {}
 		

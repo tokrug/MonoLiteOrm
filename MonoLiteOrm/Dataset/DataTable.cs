@@ -12,16 +12,16 @@ namespace Mono.Mlo
 		private List<DataColumn> columns = new List<DataColumn>();
 		private List<DataRow> rows = new List<DataRow>();
 		
-		public string Name {get;set;}
-		public List<DataColumn> Columns {get{return this.columns;}}
-		public List<DataRow> Rows {get{return this.rows;}}
-		public int RowCount {get{return rows.Count;}}
+		public virtual string Name {get;set;}
+		public virtual List<DataColumn> Columns {get{return this.columns;}}
+		public virtual List<DataRow> Rows {get{return this.rows;}}
+		public virtual int RowCount {get{return rows.Count;}}
 		
 		public DataTable ()
 		{
 		}
 		
-		public DataRow addRow() {
+		public virtual DataRow addRow() {
 			DataRow row = new DataRow() {Table = this};
 			this.rows.Add (row);
 			return row;

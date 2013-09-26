@@ -8,7 +8,7 @@ namespace Mono.Mlo
 		
 		private Dictionary<DataColumn, object> values = new Dictionary<DataColumn, object>();
 		
-		public DataTable Table {get;set;}
+		public virtual DataTable Table {get;set;}
 		
 		public DataRow ()
 		{
@@ -20,7 +20,7 @@ namespace Mono.Mlo
 		/// <param name='column'>
 		/// Column.
 		/// </param>
-		public object this[DataColumn column] {
+		public virtual object this[DataColumn column] {
 			get {
 				return this.values[column];	
 			}
@@ -29,7 +29,7 @@ namespace Mono.Mlo
 			}
 		}
 		
-		public object this[string columnName] {
+		public virtual object this[string columnName] {
 			get {
 				DataColumn col = Table.Columns.Find ((x) => x.Name == columnName);
 				return this.values[col];

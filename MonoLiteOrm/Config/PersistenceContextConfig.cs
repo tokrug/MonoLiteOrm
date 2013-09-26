@@ -11,15 +11,15 @@ namespace Mono.Mlo
 	{
 		private List<Assembly> assemblies = new List<Assembly>();
 		
-		public string DatabaseName {get;set;}
-		public int DatabaseVersion {get;set;}
-		public List<Assembly> Assemblies {get {return assemblies;}}
+		public virtual string DatabaseName {get;set;}
+		public virtual int DatabaseVersion {get;set;}
+		public virtual List<Assembly> Assemblies {get {return assemblies;}}
 		
 		public PersistenceContextConfig ()
 		{
 		}
 		
-		public void addAssembly(string assemblyName) {
+		public virtual void addAssembly(string assemblyName) {
 			this.assemblies.Add (Assembly.Load (assemblyName));
 		}
 	}

@@ -9,7 +9,7 @@ namespace Mono.Mlo
 	{
 		private string name;
 		
-		public string Name {get {return this.name;}}
+		public virtual string Name {get {return this.name;}}
 		
 		public Table (string name)
 		{

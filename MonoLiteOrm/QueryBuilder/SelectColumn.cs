@@ -5,9 +5,9 @@ namespace Mono.Mlo
 	public class SelectColumn
 	{
 		
-		public string TableName {get;set;}
-		public string ColumnName {get;set;}
-		public string Alias {get;set;}
+		public virtual string TableName {get;set;}
+		public virtual string ColumnName {get;set;}
+		public virtual string Alias {get;set;}
 		
 		public SelectColumn ()
 		{

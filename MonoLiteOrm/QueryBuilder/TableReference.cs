@@ -5,8 +5,8 @@ namespace Mono.Mlo
 	public class TableReference
 	{
 		
-		public string Name {get;set;}
-		public string Alias {get;set;}
+		public virtual string Name {get;set;}
+		public virtual string Alias {get;set;}
 		
 		public TableReference ()
 		{

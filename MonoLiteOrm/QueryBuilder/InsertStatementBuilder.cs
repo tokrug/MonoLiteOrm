@@ -10,9 +10,9 @@ namespace Mono.Mlo
 		private List<string> columns = new List<string>();
 		private List<ValueSet> valueSets = new List<ValueSet>();
 		
-		public string TableName {get;set;}
-		public List<string> Columns {get{return this.columns;}}
-		public List<ValueSet> ValueSets {get{return this.valueSets;}}
+		public virtual string TableName {get;set;}
+		public virtual List<string> Columns {get{return this.columns;}}
+		public virtual List<ValueSet> ValueSets {get{return this.valueSets;}}
 		
 		public InsertStatementBuilder ()
 		{

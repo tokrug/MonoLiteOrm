@@ -23,7 +23,7 @@ namespace Mono.Mlo
 			this.mapping = mappings;
 		}
 		
-		public T load<T>(int id) where T : new() {
+		public virtual T load<T>(int id) where T : new() {
 			ClassMapping classMapping = mapping.getMapping<T>();
 			string query = this.queryBuilder.selectByIdQuery(classMapping);
 			IDbCommand cmd = con.CreateCommand();
@@ -38,7 +38,7 @@ namespace Mono.Mlo
 			return adapt.toEntity<T>(dataSet, classMapping);
 		}
 		
-		public void save<T>(T obj) where T : new() {
+		public virtual void save<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = this.queryBuilder.insertQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
@@ -57,7 +57,7 @@ namespace Mono.Mlo
 			}
 		}
 		
-		public void update<T>(T obj) where T : new() {
+		public virtual void update<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = this.queryBuilder.updateQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
@@ -72,7 +72,7 @@ namespace Mono.Mlo
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		
-		public void delete<T>(T obj) where T : new() {
+		public virtual void delete<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
 			string query = this.queryBuilder.deleteQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
@@ -84,7 +84,7 @@ namespace Mono.Mlo
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		
-		public Transaction startTransaction() {
+		public virtual Transaction startTransaction() {
 			this.transaction = new Transaction(con.BeginTransaction());
 			return this.transaction;
 		}

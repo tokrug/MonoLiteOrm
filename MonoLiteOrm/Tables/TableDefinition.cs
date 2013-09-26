@@ -15,23 +15,23 @@ namespace Mono.Mlo
 		
 		private List<TableColumn> columns;
 		
-		public string Name {get;set;}
+		public virtual string Name {get;set;}
 		
 		public TableDefinition ()
 		{
 			this.columns = new List<TableColumn>();
 		}
 		
-		public void addColumn(TableColumn column) {
+		public virtual void addColumn(TableColumn column) {
 			this.columns.Add (column);
 			column.Table = this;
 		}
 		
-		public ReadOnlyCollection<TableColumn> getColumns() {
+		public virtual ReadOnlyCollection<TableColumn> getColumns() {
 			return new ReadOnlyCollection<TableColumn>(this.columns);
 		}
 		
-		public string getTableSchema() {
+		public virtual string getTableSchema() {
 			List<string> columnDefinitions = new List<string>();
 			
 			StringBuilder build = new StringBuilder();

@@ -4,8 +4,8 @@ namespace Mono.Mlo
 {
 	public class EqualCondition
 	{
-		public string ColumnName {get;set;}
-		public string EqualTo {get;set;}
+		public virtual string ColumnName {get;set;}
+		public virtual string EqualTo {get;set;}
 		
 		public EqualCondition ()
 		{

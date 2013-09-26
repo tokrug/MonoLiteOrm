@@ -12,7 +12,7 @@ namespace Mono.Mlo
 	
 		}
 		
-		public ClassMapping getMapping<T>() {
+		public virtual ClassMapping getMapping<T>() {
 			return classMappings[typeof(T)];
 		}
 		
@@ -22,7 +22,7 @@ namespace Mono.Mlo
 		/// <returns>
 		/// The mappings.
 		/// </returns>
-		public List<ClassMapping> getMappings() {
+		public virtual List<ClassMapping> getMappings() {
 			List<ClassMapping> result = new List<ClassMapping>();
 			foreach (ClassMapping map in classMappings.Values) {
 				result.Add (map);
@@ -30,7 +30,7 @@ namespace Mono.Mlo
 			return result;
 		}
 		
-		public void addMapping(ClassMapping mapping) {
+		public virtual void addMapping(ClassMapping mapping) {
 			this.classMappings.Add (mapping.ClassType, mapping);	
 		}
 	}

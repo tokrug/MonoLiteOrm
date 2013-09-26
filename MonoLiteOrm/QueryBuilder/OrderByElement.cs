@@ -5,8 +5,8 @@ namespace Mono.Mlo
 	public class OrderByElement
 	{
 		
-		public string ColumnName {get;set;}
-		public SortDirection Direction {get;set;}
+		public virtual string ColumnName {get;set;}
+		public virtual SortDirection Direction {get;set;}
 		
 		public OrderByElement ()
 		{

@@ -77,6 +77,7 @@
     <Compile Include="Config\DatabaseMappings.cs" />
     <Compile Include="Config\PersistentField.cs" />
     <Compile Include="QueryBuilder\ClassQueryBuilder.cs" />
+    <Compile Include="Config\AttributeConfigLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -25,30 +25,6 @@ namespace Mono.Mlo
 			propertyMappings.Add (mapping.Field.Field, mapping);	
 		}
 		
-		public object toObject(IDataReader reader) {
-			object newInstance = Activator.CreateInstance(this.ClassType);
-			IdMapping.assignProperty(newInstance, reader, 0);
-			int i = 1;
-			foreach (FieldInfo field in this.propertyMappings.Keys) {
-				FieldMapping fieldMap = propertyMappings[field];
-				fieldMap.assignProperty(newInstance, reader, i);
-				i++;
-			}
-			return newInstance;
-		}
-		
-		public string toSQLParams(string query, object obj) {
-			object[] paramArray = new object[this.propertyMappings.Count+1];
-			paramArray[0] = IdMapping.toSQLString(obj);
-			int i = 1;
-			foreach (FieldInfo field in this.propertyMappings.Keys) {
-				FieldMapping fieldMap = propertyMappings[field];
-				paramArray[i] = fieldMap.toSQLString(obj);
-				i++;
-			}
-			return String.Format (query, paramArray);
-		}
-		
 		public int getIdValue(object obj) {
 			return (int) this.IdMapping.Field.Field.GetValue (obj);	
 		}

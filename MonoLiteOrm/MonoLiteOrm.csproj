@@ -38,33 +38,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="AttributeUtils.cs" />
-    <Compile Include="ClassMapping.cs" />
-    <Compile Include="DatabaseMappings.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="EntityManagerFactory.cs" />
-    <Compile Include="FieldConverter.cs" />
-    <Compile Include="FieldConverterFactory.cs" />
-    <Compile Include="FieldMapping.cs" />
-    <Compile Include="PersistenceContextConfig.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Attributes\Column.cs" />
     <Compile Include="Attributes\Entity.cs" />
     <Compile Include="Attributes\Id.cs" />
     <Compile Include="Attributes\Table.cs" />
     <Compile Include="Attributes\Transient.cs" />
-    <Compile Include="Converters\BooleanFieldConverter.cs" />
-    <Compile Include="Converters\DateFieldConverter.cs" />
-    <Compile Include="Converters\DoubleFieldConverter.cs" />
-    <Compile Include="Converters\FloatFieldConverter.cs" />
-    <Compile Include="Converters\IntFieldConverter.cs" />
-    <Compile Include="Converters\StringFieldConverter.cs" />
     <Compile Include="MonoLiteOrm.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="EntityAdapter.cs" />
     <Compile Include="Tables\TableDefinition.cs" />
     <Compile Include="Tables\TableColumn.cs" />
-    <Compile Include="PersistentField.cs" />
     <Compile Include="Dataset\DataRow.cs" />
     <Compile Include="Dataset\DataTable.cs" />
     <Compile Include="Dataset\DataSet.cs" />
@@ -81,11 +67,23 @@
     <Compile Include="QueryBuilder\EqualCondition.cs" />
     <Compile Include="QueryBuilder\InsertStatementBuilder.cs" />
     <Compile Include="QueryBuilder\DeleteStatementBuilder.cs" />
+    <Compile Include="QueryBuilder\ValueSet.cs" />
+    <Compile Include="QueryBuilder\UpdateStatementBuilder.cs" />
+    <Compile Include="Utilities\AttributeUtils.cs" />
+    <Compile Include="Dataset\DataSetFiller.cs" />
+    <Compile Include="Config\PersistenceContextConfig.cs" />
+    <Compile Include="Config\ClassMapping.cs" />
+    <Compile Include="Config\FieldMapping.cs" />
+    <Compile Include="Config\DatabaseMappings.cs" />
+    <Compile Include="Config\PersistentField.cs" />
+    <Compile Include="QueryBuilder\ClassQueryBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Tables\" />
     <Folder Include="Dataset\" />
     <Folder Include="QueryBuilder\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Config\" />
   </ItemGroup>
 </Project>

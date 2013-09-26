@@ -20,6 +20,12 @@ namespace Mono.Mlo
 		public DataTable ()
 		{
 		}
+		
+		public DataRow addRow() {
+			DataRow row = new DataRow() {Table = this};
+			this.rows.Add (row);
+			return row;
+		}
 	}
 }
 

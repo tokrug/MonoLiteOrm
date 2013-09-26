@@ -13,64 +13,74 @@ namespace Mono.Mlo
 		
 		private Transaction transaction;
 		
+		private DataSetFiller dataSetFiller = new DataSetFiller();
+		private EntityAdapter adapt = new EntityAdapter();
+		private ClassQueryBuilder queryBuilder = new ClassQueryBuilder();
+		
 		public EntityManager (IDbConnection con, DatabaseMappings mappings)
 		{
 			this.con = con;
 			this.mapping = mappings;
 		}
 		
-		public T load2<T>(int id) where T : new() {
+		public T load<T>(int id) where T : new() {
 			ClassMapping classMapping = mapping.getMapping<T>();
-			EntityAdapter<T> adapt = new EntityAdapter<T>(classMapping, this.con);
-			string query = classMapping.getLoadQuery();
-			query = String.Format (query, id);
+			string query = this.queryBuilder.selectByIdQuery(classMapping);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
+			IDataParameter idParam = cmd.CreateParameter();
+			cmd.Parameters.Add (idParam);
+			idParam.ParameterName = classMapping.IdMapping.Field.Field.Name;
+			idParam.Value = id;
+			cmd.Prepare();
 			IDataReader reader = cmd.ExecuteReader();
-			if (reader.Read()) {
-				return (T) classMapping.toObject(reader);
-			} else
-				return default(T);
+			DataSet dataSet = dataSetFiller.queryResultToDataSet(reader, classMapping.CorrespondingTable);
+			return adapt.toEntity<T>(dataSet, classMapping);
 		}
 		
-		public T load<T>(int id) {
+		public void save<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
-			string query = mapp.getLoadQuery();
-			query = String.Format (query, id);
+			string query = this.queryBuilder.insertQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
-			IDataReader reader = cmd.ExecuteReader();
-			if (reader.Read()) {
-				return (T) mapp.toObject(reader);
-			} else
-				return default(T);
-		}
-		
-		public void save<T>(T obj) {
-			ClassMapping mapp = mapping.getMapping<T>();
-			string query = mapp.getInsertQuery();
-			query = mapp.toSQLParams(query, obj);
-			IDbCommand cmd = con.CreateCommand();
-			cmd.CommandText = query;
+			foreach (FieldMapping fieldMap in mapp.PropertyMappings) {
+				IDataParameter param = cmd.CreateParameter();
+				cmd.Parameters.Add (param);
+				param.ParameterName = fieldMap.Field.Field.Name;
+				param.Value = fieldMap.Field.Field.GetValue (obj);
+			}
+			cmd.Prepare();
 			int affectedRows = cmd.ExecuteNonQuery();
-			// does not retrieve ID!!!!!!!!!!!!!!!!
+			// Sqlite only
+			if (mapp.IdMapping.Field.Field.GetValue (obj) == null) {
+				mapp.IdMapping.Field.Field.SetValue (obj, ((SqliteConnection) con).LastInsertRowId);
+			}
 		}
 		
-		public void update<T>(T obj) {
+		public void update<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
-			string query = mapp.getUpdateQuery();
-			query = mapp.toSQLParams(query, obj);
+			string query = this.queryBuilder.updateQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
+			foreach (FieldMapping fieldMap in mapp.PropertyMappings) {
+				IDataParameter param = cmd.CreateParameter();
+				cmd.Parameters.Add (param);
+				param.ParameterName = fieldMap.Field.Field.Name;
+				param.Value = fieldMap.Field.Field.GetValue (obj);
+			}
+			cmd.Prepare();
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		
-		public void delete<T>(T obj) {
+		public void delete<T>(T obj) where T : new() {
 			ClassMapping mapp = mapping.getMapping<T>();
-			string query = mapp.getDeleteQuery();
-			query = String.Format (query, mapp.getIdValue(obj));
+			string query = this.queryBuilder.deleteQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
+			IDataParameter idParam = cmd.CreateParameter();
+			cmd.Parameters.Add (idParam);
+			idParam.ParameterName = mapp.IdMapping.Field.Field.Name;
+			idParam.Value = mapp.IdMapping.Field.Field.GetValue (obj);
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		

@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 namespace Mono.Mlo
@@ -7,9 +8,11 @@ namespace Mono.Mlo
 	{
 		
 		private List<string> columns = new List<string>();
+		private List<ValueSet> valueSets = new List<ValueSet>();
 		
-		public List<string> Columns {get{return this.columns;}}
 		public string TableName {get;set;}
+		public List<string> Columns {get{return this.columns;}}
+		public List<ValueSet> ValueSets {get{return this.valueSets;}}
 		
 		public InsertStatementBuilder ()
 		{
@@ -17,13 +20,16 @@ namespace Mono.Mlo
 		
 		public override string ToString ()
 		{
-			List<string> columnNames = new List<string>();
-			List<string> parameters = new List<string>();
-			foreach (string columnName in this.columns) {
-				columnNames.Add (columnName);
-				parameters.Add ("@" + columnName);
+			StringBuilder builder = new StringBuilder();
+			builder.Append ("INSERT INTO " + TableName + "(");
+			builder.Append (String.Join (", ", this.columns.ToArray()));
+			builder.Append (") VALUES ");
+			foreach (ValueSet valueSet in this.valueSets) {
+				builder.Append ("(" + valueSet.ToString() + "), ");
 			}
-			return "INSERT INTO " + TableName + "(" + String.Join (", ", columnNames.ToArray()) + ") VALUES (" + String.Join (", ", parameters.ToArray()) + ");";
+			builder.Remove(builder.Length-2,2);
+			builder.Append (";");
+			return builder.ToString();
 		}
 		
 	}

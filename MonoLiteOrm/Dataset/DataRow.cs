@@ -29,6 +29,17 @@ namespace Mono.Mlo
 			}
 		}
 		
+		public object this[string columnName] {
+			get {
+				DataColumn col = Table.Columns.Find ((x) => x.Name == columnName);
+				return this.values[col];
+			}
+			set {
+				DataColumn col = Table.Columns.Find ((x) => x.Name == columnName);
+				this.values[col] = value;
+			}
+		}
+		
 	}
 }
 

@@ -1,53 +1,38 @@
 using System;
 using System.Data;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
-	public class EntityAdapter<T> where T : new()
+	/// <summary>
+	/// Converts a data set to entities and creates SqlCommands to retrieve required data.
+	/// </summary>
+	public class EntityAdapter
 	{
-		private ClassMapping classMapping;
-		private IDbConnection con;
 		
-		public EntityAdapter (ClassMapping mapping, IDbConnection connection)
+		public EntityAdapter ()
 		{
-			this.classMapping = mapping;
-			this.con = connection;
 		}
 		
-		private void selectAllQuery() {
-			NativeQueryBuilder builder = new NativeQueryBuilder();
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
+		public List<T> toEntities<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+			return null;	
+		}
+		
+		public T toEntity<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+			if (dataSet[mapping.CorrespondingTable.Name].RowCount > 0) {
+				return mapEntityProperties<T>(dataSet[mapping.CorrespondingTable.Name].Rows[0], mapping);
+			} else {
+				return default(T);	
 			}
-			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
 		}
-		
-		private void selectByIdQuery() {
-			NativeQueryBuilder builder = new NativeQueryBuilder();
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
+					
+		private T mapEntityProperties<T>(DataRow row, ClassMapping mapping) where T : new () {
+			T instance = Activator.CreateInstance<T>();
+			foreach (FieldMapping fieldMap in mapping.PropertyMappings) {
+				fieldMap.Field.Field.SetValue(instance, row[fieldMap.Column.Name]);
 			}
-			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
-		}
-		
-		private void insertQuery() {
-			IDbCommand command = new Mono.Data.SqliteClient.SqliteCommand();
-			
-			InsertStatementBuilder builder = new InsertStatementBuilder();
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				builder.Columns.Add (fieldMap.Column.Name);
-			}
-			
-			command.CommandText = builder.ToString();
-			
-		}
-		
-		private void deleteQuery() {
-			DeleteStatementBuilder builder = new DeleteStatementBuilder();
-			builder.TableName = classMapping.CorrespondingTable.Name;
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
+			return instance;
 		}
 		
 	}

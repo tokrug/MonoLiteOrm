@@ -7,4 +7,4 @@ Why bother creating yet another ORM? Basically because there is none that can be
 
 API is based on JPA/Hibernate (dunno if nHibernate looks the same). Of course it doesn't provide every single feature known from Hibernate. There will be no lazy loading and the sort. 
 
-The aim is to create API for CRUD operations for whole object graphs but only dependent on Mono libraries (.NET 2.0).
+The aim is to create API for CRUD operations for whole object graphs but only dependent on Mono < 3.0.

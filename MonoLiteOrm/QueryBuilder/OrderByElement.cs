@@ -17,7 +17,7 @@ namespace Mono.Mlo
 			this.Direction = direction;
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			 return ColumnName + " " + directionToString (Direction);
 		}

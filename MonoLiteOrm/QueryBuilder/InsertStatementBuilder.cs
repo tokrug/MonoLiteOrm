@@ -18,14 +18,14 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			StringBuilder builder = new StringBuilder();
 			builder.Append ("INSERT INTO " + TableName + "(");
 			builder.Append (String.Join (", ", this.columns.ToArray()));
 			builder.Append (") VALUES ");
 			foreach (ValueSet valueSet in this.valueSets) {
-				builder.Append ("(" + valueSet.ToString() + "), ");
+				builder.Append ("(" + valueSet.ToQueryString() + "), ");
 			}
 			builder.Remove(builder.Length-2,2);
 			builder.Append (";");

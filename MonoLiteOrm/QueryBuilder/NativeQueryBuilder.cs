@@ -20,13 +20,13 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			List<string> selected = new List<string>();
 			foreach (SelectColumn col in this.selectedColumns) {
-				selected.Add (col.ToString ());	
+				selected.Add (col.ToQueryString ());	
 			}
-			return "SELECT " + String.Join (", ", selected.ToArray()) + From.ToString() + Where.ToString() + Order.ToString() + ";";
+			return "SELECT " + String.Join (", ", selected.ToArray()) + From.ToString() + Where.ToQueryString() + Order.ToQueryString() + ";";
 		}
 		
 	}

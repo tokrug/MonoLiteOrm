@@ -11,9 +11,9 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
-			return Equality.ToString ();
+			return Equality.ToQueryString ();
 		}
 	}
 }

@@ -12,6 +12,10 @@ namespace Mono.Mlo
 		{
 		}
 		
+		public virtual string ToQueryString() {
+			return null;
+		}
+		
 	}
 
 }

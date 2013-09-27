@@ -26,7 +26,7 @@ namespace Mono.Mlo
 			values.Add ("@" + paramName);
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			return String.Join (", ", values.ToArray());
 		}

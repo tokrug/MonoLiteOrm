@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			return (TableName == null ? "" : TableName + ".") + ColumnName + (Alias == null ? "" : " " + Alias);
 		}

@@ -11,7 +11,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			return ColumnName + " = " + EqualTo;
 		}

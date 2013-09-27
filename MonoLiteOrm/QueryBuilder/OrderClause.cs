@@ -14,13 +14,13 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString() {
+		public virtual string ToQueryString() {
 			if (orderBy.Count < 0) {
 				return "";
 			} else {
 				List<string> sorts = new List<string>();
 				foreach (OrderByElement el in orderBy) {
-					sorts.Add (el.ToString ());	
+					sorts.Add (el.ToQueryString ());	
 				}
 				return "ORDER BY " + String.Join (", ", sorts.ToArray());
 			}

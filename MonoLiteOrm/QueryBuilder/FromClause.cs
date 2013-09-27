@@ -10,6 +10,10 @@ namespace Mono.Mlo
 		public FromClause ()
 		{
 		}
+		
+		public virtual string ToQueryString() {
+			return null;	
+		}
 	}
 }
 

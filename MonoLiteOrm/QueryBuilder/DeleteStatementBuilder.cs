@@ -12,9 +12,9 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
-			return "DELETE FROM " + TableName + " " + Where.ToString() + ";";
+			return "DELETE FROM " + TableName + " " + Where.ToQueryString() + ";";
 		}
 		
 	}

@@ -19,7 +19,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public override string ToString ()
+		public virtual string ToQueryString ()
 		{
 			StringBuilder builder = new StringBuilder();
 			builder.Append("UPDATE " + TableName + " ");
@@ -27,7 +27,7 @@ namespace Mono.Mlo
 				builder.Append ("SET " +  columns[i] + " = " + values[i] + ", ");
 			}
 			builder.Remove (builder.Length-2,2);
-			builder.Append(Where.ToString ());
+			builder.Append(Where.ToQueryString ());
 			builder.Append (";");
 			return builder.ToString ();
 		}

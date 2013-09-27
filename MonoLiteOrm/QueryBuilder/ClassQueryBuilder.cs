@@ -17,7 +17,7 @@ namespace Mono.Mlo
 				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
 			}
 			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
-			return builder.ToString ();
+			return builder.ToQueryString ();
 		}
 		
 		public virtual string selectByIdQuery(ClassMapping classMapping) {
@@ -27,7 +27,7 @@ namespace Mono.Mlo
 			}
 			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
 			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
-			return builder.ToString ();
+			return builder.ToQueryString ();
 		}
 		
 		public virtual string insertQuery(ClassMapping classMapping) {
@@ -38,14 +38,14 @@ namespace Mono.Mlo
 				builder.Columns.Add (fieldMap.Column.Name);
 				singleSet.addParameter(fieldMap.Field.Field.Name);
 			}
-			return builder.ToString();
+			return builder.ToQueryString();
 		}
 		
 		public virtual string deleteQuery(ClassMapping classMapping) {
 			DeleteStatementBuilder builder = new DeleteStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
-			return builder.ToString ();
+			return builder.ToQueryString ();
 		}
 		
 		public virtual string updateQuery(ClassMapping classMapping) {
@@ -58,7 +58,7 @@ namespace Mono.Mlo
 				}
 			}
 			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
-			return builder.ToString ();
+			return builder.ToQueryString ();
 		}
 		
 	}

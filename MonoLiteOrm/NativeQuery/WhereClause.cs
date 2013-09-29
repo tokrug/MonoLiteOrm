@@ -5,7 +5,7 @@ namespace Mono.Mlo
 	public class WhereClause
 	{
 		
-		public virtual EqualCondition Equality {get;set;}
+		public virtual ILogicalCondition Condition {get;set;}
 		
 		public WhereClause ()
 		{
@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		
 		public virtual string ToQueryString ()
 		{
-			return Equality.ToQueryString ();
+			return Condition.ToQueryString ();
 		}
 	}
 }

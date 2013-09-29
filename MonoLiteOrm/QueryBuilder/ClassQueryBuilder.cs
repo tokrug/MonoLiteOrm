@@ -12,22 +12,24 @@ namespace Mono.Mlo
 		}
 		
 		public virtual string selectAllQuery(ClassMapping classMapping) {
-			NativeQueryBuilder builder = new NativeQueryBuilder();
+			Query query = new Query();
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
+				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
 			}
-			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
-			return builder.ToQueryString ();
+			query.From = new FromClause() {Source = From.Table (classMapping.CorrespondingTable.Name)};
+			return query.ToQueryString ();
 		}
 		
 		public virtual string selectByIdQuery(ClassMapping classMapping) {
-			NativeQueryBuilder builder = new NativeQueryBuilder();
+			Query query = new Query();
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				builder.SelectedColumns.Add (new SelectColumn() {TableName = classMapping.CorrespondingTable.Name, ColumnName = fieldMap.Column.Name});
+				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
 			}
-			builder.From = new FromClause() {Source = new TableReference() {Name = classMapping.CorrespondingTable.Name}};
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
-			return builder.ToQueryString ();
+			query.From = new FromClause() {Source = From.Table (classMapping.CorrespondingTable.Name)};
+			query.Where.Condition = Logical.Equal(
+				Expression.Column (classMapping.IdMapping.Column.Name),
+				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
+			return query.ToQueryString ();
 		}
 		
 		public virtual string insertQuery(ClassMapping classMapping) {
@@ -44,7 +46,9 @@ namespace Mono.Mlo
 		public virtual string deleteQuery(ClassMapping classMapping) {
 			DeleteStatementBuilder builder = new DeleteStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
+			builder.Where.Condition = Logical.Equal(
+				Expression.Column (classMapping.IdMapping.Column.Name),
+				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
 			return builder.ToQueryString ();
 		}
 		
@@ -57,7 +61,9 @@ namespace Mono.Mlo
 					builder.Values.addParameter(fieldMap.Field.Field.Name);
 				}
 			}
-			builder.Where = new WhereClause() {Equality = new EqualCondition() {ColumnName = classMapping.IdMapping.Column.Name, EqualTo = "@" + classMapping.IdMapping.Field.Field.Name}};
+			builder.Where.Condition = Logical.Equal(
+				Expression.Column (classMapping.IdMapping.Column.Name),
+				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
 			return builder.ToQueryString ();
 		}
 		

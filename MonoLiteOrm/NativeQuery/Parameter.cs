@@ -2,21 +2,17 @@ using System;
 
 namespace Mono.Mlo
 {
-	public class TableReference
+	public class Parameter : IQueryExpression
 	{
-		
 		public virtual string Name {get;set;}
-		public virtual string Alias {get;set;}
 		
-		public TableReference ()
+		public Parameter ()
 		{
 		}
 		
 		public virtual string ToQueryString() {
-			return null;
+			return "@" + Name;	
 		}
-		
 	}
-
 }
 

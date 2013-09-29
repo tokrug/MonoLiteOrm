@@ -5,8 +5,7 @@ namespace Mono.Mlo
 	public class SelectColumn
 	{
 		
-		public virtual string TableName {get;set;}
-		public virtual string ColumnName {get;set;}
+		public virtual IQueryExpression Select {get;set;}
 		public virtual string Alias {get;set;}
 		
 		public SelectColumn ()
@@ -15,7 +14,7 @@ namespace Mono.Mlo
 		
 		public virtual string ToQueryString ()
 		{
-			return (TableName == null ? "" : TableName + ".") + ColumnName + (Alias == null ? "" : " " + Alias);
+			return Select.ToQueryString() + (Alias == null ? "" : " " + Alias);
 		}
 	}
 }

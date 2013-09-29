@@ -25,7 +25,7 @@ namespace Mono.Mlo
 			builder.Append (String.Join (", ", this.columns.ToArray()));
 			builder.Append (") VALUES ");
 			foreach (ValueSet valueSet in this.valueSets) {
-				builder.Append ("(" + valueSet.ToQueryString() + "), ");
+				builder.Append (valueSet.ToQueryString() + ", ");
 			}
 			builder.Remove(builder.Length-2,2);
 			builder.Append (";");

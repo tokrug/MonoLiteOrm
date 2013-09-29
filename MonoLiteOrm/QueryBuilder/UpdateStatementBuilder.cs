@@ -25,7 +25,7 @@ namespace Mono.Mlo
 			StringBuilder builder = new StringBuilder();
 			builder.Append("UPDATE " + TableName + " ");
 			for (int i = 0; i < columns.Count; i++) {
-				builder.Append ("SET " +  columns[i] + " = " + values[i] + ", ");
+				builder.Append ("SET " +  columns[i] + " = " + values[i].ToQueryString () + ", ");
 			}
 			builder.Remove (builder.Length-2,2);
 			builder.Append(Where.ToQueryString ());

@@ -1,15 +1,16 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
 	public class ValueSet
 	{
-		private List<string> values = new List<string>();
+		private List<IQueryExpression> values = new List<IQueryExpression>();
 		
-		public virtual List<string> Values {get{return this.values;}}
+		public virtual List<IQueryExpression> Values {get{return this.values;}}
 		
-		public virtual string this[int i] {
+		public virtual IQueryExpression this[int i] {
 			get {
 				return this.values[i];	
 			}
@@ -22,13 +23,16 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public virtual void addParameter(string paramName) {
-			values.Add ("@" + paramName);
-		}
-		
 		public virtual string ToQueryString ()
 		{
-			return String.Join (", ", values.ToArray());
+			StringBuilder builder = new StringBuilder();
+			builder.Append ("(");
+			foreach (IQueryExpression exp in this.values) {
+				builder.Append (exp.ToQueryString() + ", ");	
+			}
+			builder.Remove (builder.Length-2,2);
+			builder.Append ("(");
+			return builder.ToString();
 		}
 	}
 }

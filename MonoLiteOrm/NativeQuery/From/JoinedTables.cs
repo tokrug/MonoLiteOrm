@@ -19,8 +19,8 @@ namespace Mono.Mlo
 		}
 		
 		public virtual string ToQueryString() {
-			return Table.ToQueryString() + " " + joinTypeToString(JoinType) + " " + JoinedWith.ToQueryString()
-				+ (JoinType == JoinType.CROSSJOIN ? "" : " " + On.ToQueryString ())
+			return "(" + Table.ToQueryString() + " " + joinTypeToString(JoinType) + " " + JoinedWith.ToQueryString()
+				+ (JoinType == JoinType.CROSSJOIN ? "" : " ON " + On.ToQueryString ()) + ")" 
 					+ (Alias == null ? "" : " " + Alias);
 		}
 		
@@ -37,10 +37,6 @@ namespace Mono.Mlo
 			}
 			case JoinType.LEFTJOIN: { 
 				result = "LEFT JOIN";
-				break;
-			}
-			case JoinType.RIGHTJOIN: {
-				result = "RIGHT JOIN";
 				break;
 			}
 			}

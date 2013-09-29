@@ -4,7 +4,7 @@ namespace Mono.Mlo
 {
 	public enum JoinType
 	{
-		INNERJOIN, LEFTJOIN, RIGHTJOIN, CROSSJOIN
+		INNERJOIN, LEFTJOIN, CROSSJOIN
 	}
 }
 

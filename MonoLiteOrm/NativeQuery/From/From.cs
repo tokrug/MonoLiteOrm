@@ -13,10 +13,6 @@ namespace Mono.Mlo
 			return new JoinedTables() {Table = table, JoinedWith = withTable, On = on, Alias = alias, JoinType = JoinType.LEFTJOIN};
 		}
 		
-		public static ITableExpression Right(ITableExpression table, ITableExpression withTable, ILogicalCondition on, string alias) {
-			return new JoinedTables() {Table = table, JoinedWith = withTable, On = on, Alias = alias, JoinType = JoinType.RIGHTJOIN};
-		}
-		
 		public static ITableExpression Cross(ITableExpression table, ITableExpression withTable, string alias) {
 			return new JoinedTables() {Table = table, JoinedWith = withTable, Alias = alias, JoinType = JoinType.CROSSJOIN};
 		}

@@ -15,16 +15,15 @@ namespace Mono.Mlo
 		}
 		
 		public virtual string ToQueryString() {
-			if (orderBy.Count < 0) {
-				return "";
-			} else {
+			string result = "";
+			if (orderBy.Count > 0) {
 				List<string> sorts = new List<string>();
 				foreach (OrderByElement el in orderBy) {
 					sorts.Add (el.ToQueryString ());	
 				}
-				return "ORDER BY " + String.Join (", ", sorts.ToArray());
+				result = "ORDER BY " + String.Join (", ", sorts.ToArray());
 			}
-			
+			return result;
 		}
 	}
 }

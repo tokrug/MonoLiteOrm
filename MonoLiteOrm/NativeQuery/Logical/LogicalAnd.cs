@@ -22,10 +22,12 @@ namespace Mono.Mlo
 		
 		public string ToQueryString() {
 			StringBuilder builder = new StringBuilder();
-			builder.Append ("(");
+			if (conditions.Count > 1)
+				builder.Append ("(");
 			this.conditions.ForEach((x) => builder.Append(x.ToQueryString() + " AND "));
 			builder.Remove (builder.Length - 5,5);
-			builder.Append (")");
+			if (conditions.Count > 1)
+				builder.Append (")");
 			return builder.ToString ();
 		}
 		

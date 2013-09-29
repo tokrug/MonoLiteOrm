@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		}
 		
 		public virtual string ToQueryString() {
-			return Query.ToQueryString() + (Alias == null ? "" : " " + Alias);
+			return "(" + Query.ToQueryString() + ")" + (Alias == null ? "" : " " + Alias);
 		}
 	}
 }

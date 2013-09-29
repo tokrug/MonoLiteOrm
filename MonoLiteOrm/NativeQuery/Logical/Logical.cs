@@ -8,20 +8,40 @@ namespace Mono.Mlo
 	public static class Logical
 	{
 		
-		public static LogicalAnd And(params ILogicalCondition[] conditions) {
+		public static ILogicalCondition And(params ILogicalCondition[] conditions) {
 			return new LogicalAnd(conditions);
 		}
 		
-		public static LogicalOr Or(params ILogicalCondition[] conditions) {
+		public static ILogicalCondition Or(params ILogicalCondition[] conditions) {
 			return new LogicalOr(conditions);	
 		}
 		
-		public static EqualCondition Equal(IQueryExpression expression, IQueryExpression equalsTo) {
-			return new EqualCondition() {Expression = expression, EqualsExpression = equalsTo};
+		public static ILogicalCondition Not(ILogicalCondition condition) {
+			return new LogicalNot() {Condition = condition};	
 		}
 		
-		public static NotEqualCondition NotEqual(IQueryExpression expression, IQueryExpression notEqualsTo) {
-			return new NotEqualCondition() {Expression = expression, NotEqualsExpression = notEqualsTo};	
+		public static ILogicalCondition Equal(IQueryExpression expression, IQueryExpression equalsTo) {
+			return new ComparisonCondition() {FirstExpression = expression, SecondExpression = equalsTo, ComparisonType = ComparisonType.E};
+		}
+		
+		public static ILogicalCondition NotEqual(IQueryExpression expression, IQueryExpression notEqualsTo) {
+			return new ComparisonCondition() {FirstExpression = expression, SecondExpression = notEqualsTo, ComparisonType = ComparisonType.NE};
+		}
+		
+		public static ILogicalCondition Greater(IQueryExpression firstExpression, IQueryExpression secondExpression) {
+			return new ComparisonCondition() {FirstExpression = firstExpression, SecondExpression = secondExpression, ComparisonType = ComparisonType.GT};
+		}
+		
+		public static ILogicalCondition GreaterEqual(IQueryExpression firstExpression, IQueryExpression secondExpression) {
+			return new ComparisonCondition() {FirstExpression = firstExpression, SecondExpression = secondExpression, ComparisonType = ComparisonType.GTE};
+		}
+		
+		public static ILogicalCondition Lesser(IQueryExpression firstExpression, IQueryExpression secondExpression) {
+			return new ComparisonCondition() {FirstExpression = firstExpression, SecondExpression = secondExpression, ComparisonType = ComparisonType.LS};
+		}
+		
+		public static ILogicalCondition LesserEqual(IQueryExpression firstExpression, IQueryExpression secondExpression) {
+			return new ComparisonCondition() {FirstExpression = firstExpression, SecondExpression = secondExpression, ComparisonType = ComparisonType.LSE};
 		}
 		
 	}

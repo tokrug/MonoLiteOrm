@@ -17,6 +17,7 @@ namespace Mono.Mlo
 		
 		public UpdateStatementBuilder ()
 		{
+			this.Where = new WhereClause();
 		}
 		
 		public virtual string ToQueryString ()

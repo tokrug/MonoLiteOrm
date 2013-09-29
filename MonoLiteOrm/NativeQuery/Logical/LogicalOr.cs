@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
-	public class LogicalOr
+	public class LogicalOr : ILogicalCondition
 	{
 		
 		private List<ILogicalCondition> conditions;
@@ -22,10 +22,12 @@ namespace Mono.Mlo
 		
 		public string ToQueryString() {
 			StringBuilder builder = new StringBuilder();
-			builder.Append ("(");
+			if (conditions.Count > 1)
+				builder.Append ("(");
 			this.conditions.ForEach((x) => builder.Append(x.ToQueryString() + " OR "));
 			builder.Remove (builder.Length - 4,4);
-			builder.Append (")");
+			if (conditions.Count > 1)
+				builder.Append (")");
 			return builder.ToString ();
 		}
 	}

@@ -44,6 +44,17 @@
     <Compile Include="DataSetTest.cs" />
     <Compile Include="TableColumnTest.cs" />
     <Compile Include="TableDefinitionTest.cs" />
+    <Compile Include="Query\ConditionsTest.cs" />
+    <Compile Include="Query\FromClauseTest.cs" />
+    <Compile Include="Query\LogicalTest.cs" />
+    <Compile Include="Query\OrderClauseTest.cs" />
+    <Compile Include="Query\QueryTest.cs" />
+    <Compile Include="Query\SelectClauseTest.cs" />
+    <Compile Include="Query\WhereClauseTest.cs" />
+    <Compile Include="Query\GroupByTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Query\" />
+  </ItemGroup>
 </Project>

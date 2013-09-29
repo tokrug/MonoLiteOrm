@@ -13,6 +13,10 @@ namespace Mono.Mlo
 			return new SelectColumn() {Select = new ColumnExpression() {Table = tableName, Column = columnName}};
 		}
 		
+		public static SelectColumn Column(string columnName) {
+			return new SelectColumn() {Select = new ColumnExpression() {Column = columnName}};	
+		}
+		
 	}
 }
 

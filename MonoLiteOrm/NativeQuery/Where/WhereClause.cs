@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		
 		public virtual string ToQueryString ()
 		{
-			return Condition.ToQueryString ();
+			return (Condition == null ? "" : "WHERE " + Condition.ToQueryString ());
 		}
 	}
 }

@@ -10,6 +10,7 @@ namespace Mono.Mlo
 		
 		public DeleteStatementBuilder ()
 		{
+			this.Where = new WhereClause();
 		}
 		
 		public virtual string ToQueryString ()

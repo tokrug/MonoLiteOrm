@@ -63,17 +63,12 @@
     <Compile Include="Config\DatabaseMappings.cs" />
     <Compile Include="Config\PersistentField.cs" />
     <Compile Include="Config\AttributeConfigLoader.cs" />
-    <Compile Include="NativeQuery\WhereClause.cs" />
     <Compile Include="NativeQuery\ValueSet.cs" />
     <Compile Include="NativeQuery\IQueryElement.cs" />
-    <Compile Include="NativeQuery\IQueryExpression.cs" />
-    <Compile Include="NativeQuery\Expression.cs" />
-    <Compile Include="NativeQuery\Logical\EqualCondition.cs" />
     <Compile Include="NativeQuery\Logical\ILogicalCondition.cs" />
     <Compile Include="NativeQuery\Logical\Logical.cs" />
     <Compile Include="NativeQuery\Logical\LogicalAnd.cs" />
     <Compile Include="NativeQuery\Logical\LogicalOr.cs" />
-    <Compile Include="NativeQuery\Logical\NotEqualCondition.cs" />
     <Compile Include="NativeQuery\Order\SortDirection.cs" />
     <Compile Include="NativeQuery\Order\OrderClause.cs" />
     <Compile Include="NativeQuery\Order\OrderByElement.cs" />
@@ -92,8 +87,25 @@
     <Compile Include="QueryBuilder\UpdateStatementBuilder.cs" />
     <Compile Include="NativeQuery\From\From.cs" />
     <Compile Include="NativeQuery\Select\Select.cs" />
-    <Compile Include="NativeQuery\ColumnExpression.cs" />
-    <Compile Include="NativeQuery\Parameter.cs" />
+    <Compile Include="NativeQuery\Having\HavingClause.cs" />
+    <Compile Include="NativeQuery\Group\GroupByClause.cs" />
+    <Compile Include="NativeQuery\Where\WhereClause.cs" />
+    <Compile Include="NativeQuery\Logical\ComparisonCondition.cs" />
+    <Compile Include="NativeQuery\Logical\ComparisonType.cs" />
+    <Compile Include="NativeQuery\Expression\ColumnExpression.cs" />
+    <Compile Include="NativeQuery\Expression\IQueryExpression.cs" />
+    <Compile Include="NativeQuery\Expression\Parameter.cs" />
+    <Compile Include="NativeQuery\Expression\Expression.cs" />
+    <Compile Include="NativeQuery\Expression\BinaryOperatorExpression.cs" />
+    <Compile Include="NativeQuery\Expression\BinaryOperator.cs" />
+    <Compile Include="NativeQuery\Expression\UnaryOperatorExpression.cs" />
+    <Compile Include="NativeQuery\Expression\UnaryOperator.cs" />
+    <Compile Include="NativeQuery\Logical\LogicalNot.cs" />
+    <Compile Include="NativeQuery\Expression\AggregateExpression.cs" />
+    <Compile Include="NativeQuery\Expression\AggregateFunction.cs" />
+    <Compile Include="NativeQuery\Expression\StringLiteral.cs" />
+    <Compile Include="NativeQuery\Expression\NumberLiteral.cs" />
+    <Compile Include="NativeQuery\Expression\AsteriskLiteral.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -107,5 +119,9 @@
     <Folder Include="NativeQuery\From\" />
     <Folder Include="NativeQuery\Select\" />
     <Folder Include="QueryBuilder\" />
+    <Folder Include="NativeQuery\Having\" />
+    <Folder Include="NativeQuery\Group\" />
+    <Folder Include="NativeQuery\Where\" />
+    <Folder Include="NativeQuery\Expression\" />
   </ItemGroup>
 </Project>

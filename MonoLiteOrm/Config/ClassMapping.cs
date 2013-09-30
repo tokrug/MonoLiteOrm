@@ -44,11 +44,11 @@ namespace Mono.Mlo
 			this.IdMapping.SetValue(obj, id);	
 		}
 		
-		public virtual R GetPropertyValue<R>(T obj, FieldMapping<T, R> field) {
+		public virtual F GetPropertyValue<F>(T obj, FieldMapping<T, F> field) {
 			return field.GetValue(obj);	
 		}
 		
-		public virtual void SetPropertyValue<R>(T obj, FieldMapping<T, R> field, R value) {
+		public virtual void SetPropertyValue<F>(T obj, FieldMapping<T, F> field, F value) {
 			field.SetValue(obj, value);	
 		}
 		

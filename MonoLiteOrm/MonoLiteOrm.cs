@@ -20,7 +20,7 @@ namespace Mono.Mlo
 			IEnumerable<Type> persistentTypes = AttributeUtils.GetTypesWithAttribute<Entity>(config.Assemblies);
 			
 			foreach (Type type in persistentTypes) {
-				mappings.addMapping (configLoader.createMapping(type));	
+				mappings.AddMapping (configLoader.createMapping(type));	
 			}
 			
 			return new EntityManagerFactory(config, mappings);

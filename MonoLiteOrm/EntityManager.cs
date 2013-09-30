@@ -24,7 +24,7 @@ namespace Mono.Mlo
 		}
 		
 		public virtual T load<T>(int id) where T : new() {
-			ClassMapping<T> classMapping = mapping.getMapping<T>();
+			ClassMapping<T> classMapping = mapping.GetMapping<T>();
 			string query = this.queryBuilder.selectByIdQuery(classMapping);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
@@ -39,7 +39,7 @@ namespace Mono.Mlo
 		}
 		
 		public virtual void save<T>(T obj) where T : new() {
-			ClassMapping<T> mapp = mapping.getMapping<T>();
+			ClassMapping<T> mapp = mapping.GetMapping<T>();
 			string query = this.queryBuilder.insertQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
@@ -58,7 +58,7 @@ namespace Mono.Mlo
 		}
 		
 		public virtual void update<T>(T obj) where T : new() {
-			ClassMapping<T> mapp = mapping.getMapping<T>();
+			ClassMapping<T> mapp = mapping.GetMapping<T>();
 			string query = this.queryBuilder.updateQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
@@ -73,7 +73,7 @@ namespace Mono.Mlo
 		}
 		
 		public virtual void delete<T>(T obj) where T : new() {
-			ClassMapping<T> mapp = mapping.getMapping<T>();
+			ClassMapping<T> mapp = mapping.GetMapping<T>();
 			string query = this.queryBuilder.deleteQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;

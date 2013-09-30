@@ -105,6 +105,7 @@
     <Compile Include="NativeQuery\Expression\NumberLiteral.cs" />
     <Compile Include="NativeQuery\Expression\AsteriskLiteral.cs" />
     <Compile Include="Config\AssemblyMapping.cs" />
+    <Compile Include="Config\RelationMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

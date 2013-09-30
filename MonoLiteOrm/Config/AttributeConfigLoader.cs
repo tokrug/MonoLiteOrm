@@ -26,10 +26,7 @@ namespace Mono.Mlo
 			// all fields including id
 			foreach (FieldInfo field in type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
 				if (isFieldPersistent(field)) {
-					PersistentField persistentField = new PersistentField() {ClassField = field};
-
-					FieldMapping fieldMapping = new FieldMapping();
-					fieldMapping.PersistentField = persistentField;
+					FieldMapping<object> fieldMapping = new FieldMapping<object>() {ClassField = field};
 					
 					TableColumn column = new TableColumn();
 					Column colAttr = AttributeUtils.getSingleAttribute<Column>(field);
@@ -40,12 +37,12 @@ namespace Mono.Mlo
 					}
 					fieldMapping.Column = column;
 					table.addColumn(column);
-					mapping.addPropertyMapping (fieldMapping);
+					mapping.AddPropertyMapping (fieldMapping);
 					Id idAttr = AttributeUtils.getSingleAttribute<Id>(field);
 					if (idAttr != null) {
 						mapping.IdMapping = fieldMapping;
 						column.IsPrimaryKey = true;
-						persistentField.IsId = true;
+						fieldMapping.IsId = true;
 					}
 				}
 			}

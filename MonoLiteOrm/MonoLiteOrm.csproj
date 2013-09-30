@@ -60,7 +60,6 @@
     <Compile Include="Config\PersistenceContextConfig.cs" />
     <Compile Include="Config\ClassMapping.cs" />
     <Compile Include="Config\FieldMapping.cs" />
-    <Compile Include="Config\PersistentField.cs" />
     <Compile Include="Config\AttributeConfigLoader.cs" />
     <Compile Include="NativeQuery\ValueSet.cs" />
     <Compile Include="NativeQuery\IQueryElement.cs" />

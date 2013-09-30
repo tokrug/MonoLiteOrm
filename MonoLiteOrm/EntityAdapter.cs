@@ -29,8 +29,8 @@ namespace Mono.Mlo
 					
 		private T mapEntityProperties<T>(DataRow row, ClassMapping mapping) where T : new () {
 			T instance = Activator.CreateInstance<T>();
-			foreach (FieldMapping fieldMap in mapping.PropertyMappings) {
-				fieldMap.PersistentField.ClassField.SetValue(instance, row[fieldMap.Column.Name]);
+			foreach (FieldMapping<object> fieldMap in mapping.PropertyMappings) {
+				fieldMap.ClassField.SetValue(instance, row[fieldMap.Column.Name]);
 			}
 			return instance;
 		}

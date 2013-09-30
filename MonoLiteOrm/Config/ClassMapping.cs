@@ -9,29 +9,36 @@ namespace Mono.Mlo
 {
 	public class ClassMapping
 	{	
+		private Dictionary<FieldInfo, FieldMapping<object>> propertyMappings = new Dictionary<FieldInfo, FieldMapping<object>>();
+		private List<FieldMapping<object>> propMappings = new List<FieldMapping<object>>();
 		
-		private Dictionary<FieldInfo, FieldMapping> propertyMappings = new Dictionary<FieldInfo, FieldMapping>();
-		private List<FieldMapping> propMappings = new List<FieldMapping>();
-		
-		public virtual ReadOnlyCollection<FieldMapping> PropertyMappings {get{return new ReadOnlyCollection<FieldMapping>(this.propMappings);}}
-		public virtual FieldMapping IdMapping {get;set;}
+		public virtual ReadOnlyCollection<FieldMapping<object>> PropertyMappings {get{return new ReadOnlyCollection<FieldMapping<object>>(this.propMappings);}}
+		public virtual FieldMapping<object> IdMapping {get;set;}
 		public virtual Type ClassType {get;set;}
 		public virtual TableDefinition CorrespondingTable {get;set;}
 		
 		public ClassMapping() {}
 		
-		public virtual void addPropertyMapping(FieldMapping mapping) {
+		/// <summary>
+		/// Adds the property mapping. Not to be available at interface level.
+		/// </summary>
+		/// <param name='mapping'>
+		/// Mapping
+		/// </param>
+		public virtual void AddPropertyMapping(FieldMapping<object> mapping) {
 			propMappings.Add (mapping);
-			propertyMappings.Add (mapping.PersistentField.ClassField, mapping);	
+			propertyMappings.Add (mapping.ClassField, mapping);	
 		}
 		
-		public virtual int getIdValue(object obj) {
-			return (int) this.IdMapping.PersistentField.ClassField.GetValue (obj);	
+		public virtual object GetIdValue(object obj) {
+			return this.IdMapping.GetValue (obj);	
 		}
 		
-		public virtual void setIdValue(object obj, int id) {
-			this.IdMapping.PersistentField.ClassField.SetValue(obj, id);	
+		public virtual void SetIdValue(object obj, int? id) {
+			this.IdMapping.SetValue(obj, id);	
 		}
+		
+		
 	}
 }
 

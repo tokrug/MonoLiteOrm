@@ -13,7 +13,7 @@ namespace Mono.Mlo
 		
 		public virtual string selectAllQuery(ClassMapping classMapping) {
 			Query query = new Query();
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
+			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
 				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
 			}
 			query.From = new FromClause() {Source = From.Table (classMapping.CorrespondingTable.Name)};
@@ -22,13 +22,13 @@ namespace Mono.Mlo
 		
 		public virtual string selectByIdQuery(ClassMapping classMapping) {
 			Query query = new Query();
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
+			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
 				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
 			}
 			query.From = new FromClause() {Source = From.Table (classMapping.CorrespondingTable.Name)};
 			query.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
+				Expression.Parameter(classMapping.IdMapping.ClassField.Name));
 			return query.ToQueryString ();
 		}
 		
@@ -36,9 +36,9 @@ namespace Mono.Mlo
 			InsertStatementBuilder builder = new InsertStatementBuilder();
 			ValueSet singleSet = new ValueSet();
 			builder.ValueSets.Add (singleSet);
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
+			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
 				builder.Columns.Add (fieldMap.Column.Name);
-				singleSet.Values.Add(Expression.Parameter(fieldMap.PersistentField.ClassField.Name));
+				singleSet.Values.Add(Expression.Parameter(fieldMap.ClassField.Name));
 			}
 			return builder.ToQueryString();
 		}
@@ -48,22 +48,22 @@ namespace Mono.Mlo
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			builder.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
+				Expression.Parameter(classMapping.IdMapping.ClassField.Name));
 			return builder.ToQueryString ();
 		}
 		
 		public virtual string updateQuery(ClassMapping classMapping) {
 			UpdateStatementBuilder builder = new UpdateStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
-			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				if (!fieldMap.PersistentField.IsId) {
+			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
+				if (!fieldMap.IsId) {
 					builder.Columns.Add (fieldMap.Column.Name);
-					builder.ValueSet.Values.Add(Expression.Parameter(fieldMap.PersistentField.ClassField.Name));
+					builder.ValueSet.Values.Add(Expression.Parameter(fieldMap.ClassField.Name));
 				}
 			}
 			builder.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
+				Expression.Parameter(classMapping.IdMapping.ClassField.Name));
 			return builder.ToQueryString ();
 		}
 		

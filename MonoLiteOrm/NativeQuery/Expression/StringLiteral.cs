@@ -12,7 +12,11 @@ namespace Mono.Mlo
 		}
 		
 		public virtual string ToQueryString() {
-			return "'" + Value + "'";
+			return "'" + escapeCharacters(Value) + "'";
+		}
+		
+		private string escapeCharacters(string toEscape) {
+			return toEscape.Replace ("'","''");
 		}
 	}
 }

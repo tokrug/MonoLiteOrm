@@ -26,7 +26,7 @@ namespace Mono.Mlo
 			// all fields including id
 			foreach (FieldInfo field in type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
 				if (isFieldPersistent(field)) {
-					FieldMapping<object> fieldMapping = new FieldMapping<object>() {ClassField = field};
+					FieldMapping<object, object> fieldMapping = new FieldMapping<object, object>() {ClassField = field};
 					
 					TableColumn column = new TableColumn();
 					Column colAttr = AttributeUtils.getSingleAttribute<Column>(field);

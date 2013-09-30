@@ -5,9 +5,9 @@ using System.Data;
 namespace Mono.Mlo
 {
 	/// <summary>
-	/// Field mapping. T denotes type specified by this field.
+	/// Field mapping. T denotes type of the class containing this field. F is for the type of the field itself.
 	/// </summary>
-	public class FieldMapping<T>
+	public class FieldMapping<T,F>
 	{	
 		public virtual FieldInfo ClassField {get;set;}
 		public virtual TableColumn Column {get;set;}
@@ -15,11 +15,11 @@ namespace Mono.Mlo
 		
 		public FieldMapping() {}
 		
-		public virtual T GetValue(object obj) {
-			return (T) ClassField.GetValue (obj);
+		public virtual F GetValue(T obj) {
+			return (F) ClassField.GetValue (obj);
 		}
 		
-		public virtual void SetValue(object obj, T value) {
+		public virtual void SetValue(T obj, F value) {
 			ClassField.SetValue(obj, value);	
 		}
 		

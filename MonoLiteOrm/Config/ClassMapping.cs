@@ -12,11 +12,11 @@ namespace Mono.Mlo
 	/// </summary>
 	public class ClassMapping<T>
 	{	
-		private Dictionary<FieldInfo, FieldMapping<object>> propertyMappings = new Dictionary<FieldInfo, FieldMapping<object>>();
-		private List<FieldMapping<object>> propMappings = new List<FieldMapping<object>>();
+		private Dictionary<FieldInfo, FieldMapping<T, object>> propertyMappings = new Dictionary<FieldInfo, FieldMapping<T, object>>();
+		private List<FieldMapping<T, object>> propMappings = new List<FieldMapping<T, object>>();
 		
-		public virtual ReadOnlyCollection<FieldMapping<object>> PropertyMappings {get{return new ReadOnlyCollection<FieldMapping<object>>(this.propMappings);}}
-		public virtual FieldMapping<object> IdMapping {get;set;}
+		public virtual ReadOnlyCollection<FieldMapping<T, object>> PropertyMappings {get{return new ReadOnlyCollection<FieldMapping<T, object>>(this.propMappings);}}
+		public virtual FieldMapping<T, object> IdMapping {get;set;}
 		public virtual Type ClassType {get;set;}
 		public virtual TableDefinition CorrespondingTable {get;set;}
 		
@@ -28,7 +28,7 @@ namespace Mono.Mlo
 		/// <param name='mapping'>
 		/// Mapping
 		/// </param>
-		public virtual void AddPropertyMapping(FieldMapping<object> mapping) {
+		public virtual void AddPropertyMapping(FieldMapping<T, object> mapping) {
 			propMappings.Add (mapping);
 			propertyMappings.Add (mapping.ClassField, mapping);	
 		}
@@ -37,15 +37,15 @@ namespace Mono.Mlo
 			return this.IdMapping.GetValue (obj);	
 		}
 		
-		public virtual void SetIdValue(T obj, int? id) {
+		public virtual void SetIdValue(T obj, object id) {
 			this.IdMapping.SetValue(obj, id);	
 		}
 		
-		public virtual R GetPropertyValue<R>(T obj, FieldMapping<R> field) {
+		public virtual R GetPropertyValue<R>(T obj, FieldMapping<T, R> field) {
 			return field.GetValue(obj);	
 		}
 		
-		public virtual void SetPropertyValue<R>(T obj, FieldMapping<R> field, R value) {
+		public virtual void SetPropertyValue<R>(T obj, FieldMapping<T, R> field, R value) {
 			field.SetValue(obj, value);	
 		}
 		

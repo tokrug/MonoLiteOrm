@@ -43,7 +43,7 @@ namespace Mono.Mlo
 			string query = this.queryBuilder.insertQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
-			foreach (FieldMapping<object> fieldMap in mapp.PropertyMappings) {
+			foreach (FieldMapping<T, object> fieldMap in mapp.PropertyMappings) {
 				IDataParameter param = cmd.CreateParameter();
 				cmd.Parameters.Add (param);
 				param.ParameterName = fieldMap.ClassField.Name;
@@ -62,7 +62,7 @@ namespace Mono.Mlo
 			string query = this.queryBuilder.updateQuery(mapp);
 			IDbCommand cmd = con.CreateCommand();
 			cmd.CommandText = query;
-			foreach (FieldMapping<object> fieldMap in mapp.PropertyMappings) {
+			foreach (FieldMapping<T, object> fieldMap in mapp.PropertyMappings) {
 				IDataParameter param = cmd.CreateParameter();
 				cmd.Parameters.Add (param);
 				param.ParameterName = fieldMap.ClassField.Name;

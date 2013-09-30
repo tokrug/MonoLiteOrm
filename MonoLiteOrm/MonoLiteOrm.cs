@@ -14,7 +14,7 @@ namespace Mono.Mlo
 		public static EntityManagerFactory getFactory(PersistenceContextConfig config) {
 			AttributeConfigLoader configLoader = new AttributeConfigLoader();
 			
-			DatabaseMappings mappings = new DatabaseMappings();
+			AssemblyMapping mappings = new AssemblyMapping();
 			
 			// convert names to assembly objects
 			IEnumerable<Type> persistentTypes = AttributeUtils.GetTypesWithAttribute<Entity>(config.Assemblies);

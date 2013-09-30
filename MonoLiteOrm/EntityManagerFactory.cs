@@ -6,11 +6,11 @@ namespace Mono.Mlo
 {
 	public class EntityManagerFactory
 	{
-		private DatabaseMappings mappings;
+		private AssemblyMapping mappings;
 		
 		private PersistenceContextConfig config;
 		
-		public EntityManagerFactory (PersistenceContextConfig config, DatabaseMappings mappings)
+		public EntityManagerFactory (PersistenceContextConfig config, AssemblyMapping mappings)
 		{
 			this.config = config;
 			this.mappings = mappings;

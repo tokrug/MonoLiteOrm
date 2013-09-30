@@ -60,7 +60,6 @@
     <Compile Include="Config\PersistenceContextConfig.cs" />
     <Compile Include="Config\ClassMapping.cs" />
     <Compile Include="Config\FieldMapping.cs" />
-    <Compile Include="Config\DatabaseMappings.cs" />
     <Compile Include="Config\PersistentField.cs" />
     <Compile Include="Config\AttributeConfigLoader.cs" />
     <Compile Include="NativeQuery\ValueSet.cs" />
@@ -106,6 +105,7 @@
     <Compile Include="NativeQuery\Expression\StringLiteral.cs" />
     <Compile Include="NativeQuery\Expression\NumberLiteral.cs" />
     <Compile Include="NativeQuery\Expression\AsteriskLiteral.cs" />
+    <Compile Include="Config\AssemblyMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

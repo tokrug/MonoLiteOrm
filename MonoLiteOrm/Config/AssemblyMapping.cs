@@ -4,11 +4,11 @@ using System.Reflection;
 
 namespace Mono.Mlo
 {
-	public class DatabaseMappings
+	public class AssemblyMapping
 	{
 		private Dictionary<Type, ClassMapping> classMappings = new Dictionary<Type, ClassMapping>();
 		
-		public DatabaseMappings() {
+		public AssemblyMapping() {
 	
 		}
 		

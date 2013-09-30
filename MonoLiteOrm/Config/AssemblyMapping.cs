@@ -12,7 +12,7 @@ namespace Mono.Mlo
 	
 		}
 		
-		public virtual ClassMapping<T> getMapping<T>() {
+		public virtual ClassMapping<T> getMapping<T>() where T : new () {
 			return (ClassMapping<T>) Convert.ChangeType (classMappings[typeof(T)], typeof(ClassMapping<T>));
 		}
 		

@@ -7,7 +7,7 @@ namespace Mono.Mlo
 	/// <summary>
 	/// Field mapping. T denotes type of the class containing this field. F is for the type of the field itself.
 	/// </summary>
-	public class FieldMapping<T,F>
+	public class FieldMapping<T,F> where T : new ()
 	{	
 		public virtual FieldInfo ClassField {get;set;}
 		public virtual TableColumn Column {get;set;}

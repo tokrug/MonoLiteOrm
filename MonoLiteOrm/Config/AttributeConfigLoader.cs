@@ -10,8 +10,8 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public virtual ClassMapping createMapping(Type type) {
-			ClassMapping mapping = new ClassMapping();
+		public virtual ClassMapping<object> createMapping(Type type) {
+			ClassMapping<object> mapping = new ClassMapping<object>();
 			// type
 			mapping.ClassType = type;
 			// table

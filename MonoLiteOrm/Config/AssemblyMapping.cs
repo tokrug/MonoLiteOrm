@@ -6,14 +6,14 @@ namespace Mono.Mlo
 {
 	public class AssemblyMapping
 	{
-		private Dictionary<Type, ClassMapping> classMappings = new Dictionary<Type, ClassMapping>();
+		private Dictionary<Type, ClassMapping<object>> classMappings = new Dictionary<Type, ClassMapping<object>>();
 		
 		public AssemblyMapping() {
 	
 		}
 		
-		public virtual ClassMapping getMapping<T>() {
-			return classMappings[typeof(T)];
+		public virtual ClassMapping<T> getMapping<T>() {
+			return (ClassMapping<T>) Convert.ChangeType (classMappings[typeof(T)], typeof(ClassMapping<T>));
 		}
 		
 		/// <summary>
@@ -22,15 +22,15 @@ namespace Mono.Mlo
 		/// <returns>
 		/// The mappings.
 		/// </returns>
-		public virtual List<ClassMapping> getMappings() {
-			List<ClassMapping> result = new List<ClassMapping>();
-			foreach (ClassMapping map in classMappings.Values) {
+		public virtual List<ClassMapping<object>> getMappings() {
+			List<ClassMapping<object>> result = new List<ClassMapping<object>>();
+			foreach (ClassMapping<object> map in classMappings.Values) {
 				result.Add (map);
 			}
 			return result;
 		}
 		
-		public virtual void addMapping(ClassMapping mapping) {
+		public virtual void addMapping(ClassMapping<object> mapping) {
 			this.classMappings.Add (mapping.ClassType, mapping);	
 		}
 	}

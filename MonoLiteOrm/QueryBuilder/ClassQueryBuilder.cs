@@ -11,7 +11,7 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public virtual string selectAllQuery(ClassMapping classMapping) {
+		public virtual string selectAllQuery<T>(ClassMapping<T> classMapping) {
 			Query query = new Query();
 			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
 				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
@@ -20,7 +20,7 @@ namespace Mono.Mlo
 			return query.ToQueryString ();
 		}
 		
-		public virtual string selectByIdQuery(ClassMapping classMapping) {
+		public virtual string selectByIdQuery<T>(ClassMapping<T> classMapping) {
 			Query query = new Query();
 			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {
 				query.Select.SelectedColumns.Add (Select.Column(classMapping.CorrespondingTable.Name, fieldMap.Column.Name));
@@ -32,7 +32,7 @@ namespace Mono.Mlo
 			return query.ToQueryString ();
 		}
 		
-		public virtual string insertQuery(ClassMapping classMapping) {
+		public virtual string insertQuery<T>(ClassMapping<T> classMapping) {
 			InsertStatementBuilder builder = new InsertStatementBuilder();
 			ValueSet singleSet = new ValueSet();
 			builder.ValueSets.Add (singleSet);
@@ -43,7 +43,7 @@ namespace Mono.Mlo
 			return builder.ToQueryString();
 		}
 		
-		public virtual string deleteQuery(ClassMapping classMapping) {
+		public virtual string deleteQuery<T>(ClassMapping<T> classMapping) {
 			DeleteStatementBuilder builder = new DeleteStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			builder.Where.Condition = Logical.Equal(
@@ -52,7 +52,7 @@ namespace Mono.Mlo
 			return builder.ToQueryString ();
 		}
 		
-		public virtual string updateQuery(ClassMapping classMapping) {
+		public virtual string updateQuery<T>(ClassMapping<T> classMapping) {
 			UpdateStatementBuilder builder = new UpdateStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			foreach (FieldMapping<object> fieldMap in classMapping.PropertyMappings) {

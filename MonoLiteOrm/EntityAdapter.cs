@@ -15,11 +15,11 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public virtual List<T> toEntities<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+		public virtual List<T> toEntities<T>(DataSet dataSet, ClassMapping<T> mapping) where T : new () {
 			return null;	
 		}
 		
-		public virtual T toEntity<T>(DataSet dataSet, ClassMapping mapping) where T : new () {
+		public virtual T toEntity<T>(DataSet dataSet, ClassMapping<T> mapping) where T : new () {
 			if (dataSet[mapping.CorrespondingTable.Name].RowCount > 0) {
 				return mapEntityProperties<T>(dataSet[mapping.CorrespondingTable.Name].Rows[0], mapping);
 			} else {
@@ -27,7 +27,7 @@ namespace Mono.Mlo
 			}
 		}
 					
-		private T mapEntityProperties<T>(DataRow row, ClassMapping mapping) where T : new () {
+		private T mapEntityProperties<T>(DataRow row, ClassMapping<T> mapping) where T : new () {
 			T instance = Activator.CreateInstance<T>();
 			foreach (FieldMapping<object> fieldMap in mapping.PropertyMappings) {
 				fieldMap.ClassField.SetValue(instance, row[fieldMap.Column.Name]);

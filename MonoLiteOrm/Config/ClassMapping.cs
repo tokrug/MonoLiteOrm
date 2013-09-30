@@ -7,7 +7,10 @@ using System.Data;
 
 namespace Mono.Mlo
 {
-	public class ClassMapping
+	/// <summary>
+	/// Class mapping. T is the class being mapped.
+	/// </summary>
+	public class ClassMapping<T>
 	{	
 		private Dictionary<FieldInfo, FieldMapping<object>> propertyMappings = new Dictionary<FieldInfo, FieldMapping<object>>();
 		private List<FieldMapping<object>> propMappings = new List<FieldMapping<object>>();
@@ -20,7 +23,7 @@ namespace Mono.Mlo
 		public ClassMapping() {}
 		
 		/// <summary>
-		/// Adds the property mapping. Not to be available at interface level.
+		/// Adds the property mapping. Not to be available at interface level. Remove counterpart is not required.
 		/// </summary>
 		/// <param name='mapping'>
 		/// Mapping
@@ -30,14 +33,21 @@ namespace Mono.Mlo
 			propertyMappings.Add (mapping.ClassField, mapping);	
 		}
 		
-		public virtual object GetIdValue(object obj) {
+		public virtual object GetIdValue(T obj) {
 			return this.IdMapping.GetValue (obj);	
 		}
 		
-		public virtual void SetIdValue(object obj, int? id) {
+		public virtual void SetIdValue(T obj, int? id) {
 			this.IdMapping.SetValue(obj, id);	
 		}
 		
+		public virtual R GetPropertyValue<R>(T obj, FieldMapping<R> field) {
+			return field.GetValue(obj);	
+		}
+		
+		public virtual void SetPropertyValue<R>(T obj, FieldMapping<R> field, R value) {
+			field.SetValue(obj, value);	
+		}
 		
 	}
 }

@@ -9,7 +9,7 @@ namespace Mono.Mlo
 	{
 		// it has to be injected somehow
 		private IDbConnection con;
-		private DatabaseMappings mapping;
+		private AssemblyMapping mapping;
 		
 		private Transaction transaction;
 		
@@ -17,7 +17,7 @@ namespace Mono.Mlo
 		private EntityAdapter adapt = new EntityAdapter();
 		private ClassQueryBuilder queryBuilder = new ClassQueryBuilder();
 		
-		public EntityManager (IDbConnection con, DatabaseMappings mappings)
+		public EntityManager (IDbConnection con, AssemblyMapping mappings)
 		{
 			this.con = con;
 			this.mapping = mappings;

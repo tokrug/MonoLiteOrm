@@ -56,7 +56,7 @@ namespace Mono.Mlo
 			UpdateStatementBuilder builder = new UpdateStatementBuilder();
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
-				if (!fieldMap.Field.IsId) {
+				if (!fieldMap.PersistentField.IsId) {
 					builder.Columns.Add (fieldMap.Column.Name);
 					builder.Values.addParameter(fieldMap.Field.Field.Name);
 				}

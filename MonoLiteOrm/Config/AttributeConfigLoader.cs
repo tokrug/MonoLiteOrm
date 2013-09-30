@@ -26,10 +26,10 @@ namespace Mono.Mlo
 			// all fields including id
 			foreach (FieldInfo field in type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
 				if (isFieldPersistent(field)) {
-					PersistentField persistentField = new PersistentField() {Field = field};
+					PersistentField persistentField = new PersistentField() {ClassField = field};
 
 					FieldMapping fieldMapping = new FieldMapping();
-					fieldMapping.Field = persistentField;
+					fieldMapping.PersistentField = persistentField;
 					
 					TableColumn column = new TableColumn();
 					Column colAttr = AttributeUtils.getSingleAttribute<Column>(field);

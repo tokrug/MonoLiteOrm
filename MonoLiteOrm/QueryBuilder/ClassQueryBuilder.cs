@@ -28,7 +28,7 @@ namespace Mono.Mlo
 			query.From = new FromClause() {Source = From.Table (classMapping.CorrespondingTable.Name)};
 			query.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
+				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
 			return query.ToQueryString ();
 		}
 		
@@ -38,7 +38,7 @@ namespace Mono.Mlo
 			builder.ValueSets.Add (singleSet);
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
 				builder.Columns.Add (fieldMap.Column.Name);
-				singleSet.addParameter(fieldMap.Field.Field.Name);
+				singleSet.Values.Add(Expression.Parameter(fieldMap.PersistentField.ClassField.Name));
 			}
 			return builder.ToQueryString();
 		}
@@ -48,7 +48,7 @@ namespace Mono.Mlo
 			builder.TableName = classMapping.CorrespondingTable.Name;
 			builder.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
+				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
 			return builder.ToQueryString ();
 		}
 		
@@ -58,12 +58,12 @@ namespace Mono.Mlo
 			foreach (FieldMapping fieldMap in classMapping.PropertyMappings) {
 				if (!fieldMap.PersistentField.IsId) {
 					builder.Columns.Add (fieldMap.Column.Name);
-					builder.Values.addParameter(fieldMap.Field.Field.Name);
+					builder.ValueSet.Values.Add(Expression.Parameter(fieldMap.PersistentField.ClassField.Name));
 				}
 			}
 			builder.Where.Condition = Logical.Equal(
 				Expression.Column (classMapping.IdMapping.Column.Name),
-				Expression.Parameter(classMapping.IdMapping.Field.Field.Name));
+				Expression.Parameter(classMapping.IdMapping.PersistentField.ClassField.Name));
 			return builder.ToQueryString ();
 		}
 		

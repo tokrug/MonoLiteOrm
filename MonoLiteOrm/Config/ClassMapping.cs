@@ -22,15 +22,15 @@ namespace Mono.Mlo
 		
 		public virtual void addPropertyMapping(FieldMapping mapping) {
 			propMappings.Add (mapping);
-			propertyMappings.Add (mapping.Field.Field, mapping);	
+			propertyMappings.Add (mapping.PersistentField.ClassField, mapping);	
 		}
 		
 		public virtual int getIdValue(object obj) {
-			return (int) this.IdMapping.Field.Field.GetValue (obj);	
+			return (int) this.IdMapping.PersistentField.ClassField.GetValue (obj);	
 		}
 		
 		public virtual void setIdValue(object obj, int id) {
-			this.IdMapping.Field.Field.SetValue(obj, id);	
+			this.IdMapping.PersistentField.ClassField.SetValue(obj, id);	
 		}
 	}
 }

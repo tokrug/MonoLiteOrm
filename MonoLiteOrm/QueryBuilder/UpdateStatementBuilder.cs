@@ -12,7 +12,7 @@ namespace Mono.Mlo
 		
 		public virtual string TableName {get;set;}
 		public virtual List<string> Columns {get{return this.columns;}}
-		public virtual ValueSet Values {get{return this.values;}}
+		public virtual ValueSet ValueSet {get{return this.values;}}
 		public virtual WhereClause Where {get;set;}
 		
 		public UpdateStatementBuilder ()

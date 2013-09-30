@@ -30,7 +30,7 @@ namespace Mono.Mlo
 			cmd.CommandText = query;
 			IDataParameter idParam = cmd.CreateParameter();
 			cmd.Parameters.Add (idParam);
-			idParam.ParameterName = classMapping.IdMapping.Field.Field.Name;
+			idParam.ParameterName = classMapping.IdMapping.PersistentField.ClassField.Name;
 			idParam.Value = id;
 			cmd.Prepare();
 			IDataReader reader = cmd.ExecuteReader();
@@ -46,14 +46,14 @@ namespace Mono.Mlo
 			foreach (FieldMapping fieldMap in mapp.PropertyMappings) {
 				IDataParameter param = cmd.CreateParameter();
 				cmd.Parameters.Add (param);
-				param.ParameterName = fieldMap.Field.Field.Name;
-				param.Value = fieldMap.Field.Field.GetValue (obj);
+				param.ParameterName = fieldMap.PersistentField.ClassField.Name;
+				param.Value = fieldMap.PersistentField.ClassField.GetValue (obj);
 			}
 			cmd.Prepare();
 			int affectedRows = cmd.ExecuteNonQuery();
 			// Sqlite only
-			if (mapp.IdMapping.Field.Field.GetValue (obj) == null) {
-				mapp.IdMapping.Field.Field.SetValue (obj, ((SqliteConnection) con).LastInsertRowId);
+			if (mapp.IdMapping.PersistentField.ClassField.GetValue (obj) == null) {
+				mapp.IdMapping.PersistentField.ClassField.SetValue (obj, ((SqliteConnection) con).LastInsertRowId);
 			}
 		}
 		
@@ -65,8 +65,8 @@ namespace Mono.Mlo
 			foreach (FieldMapping fieldMap in mapp.PropertyMappings) {
 				IDataParameter param = cmd.CreateParameter();
 				cmd.Parameters.Add (param);
-				param.ParameterName = fieldMap.Field.Field.Name;
-				param.Value = fieldMap.Field.Field.GetValue (obj);
+				param.ParameterName = fieldMap.PersistentField.ClassField.Name;
+				param.Value = fieldMap.PersistentField.ClassField.GetValue (obj);
 			}
 			cmd.Prepare();
 			int affectedRows = cmd.ExecuteNonQuery();
@@ -79,8 +79,8 @@ namespace Mono.Mlo
 			cmd.CommandText = query;
 			IDataParameter idParam = cmd.CreateParameter();
 			cmd.Parameters.Add (idParam);
-			idParam.ParameterName = mapp.IdMapping.Field.Field.Name;
-			idParam.Value = mapp.IdMapping.Field.Field.GetValue (obj);
+			idParam.ParameterName = mapp.IdMapping.PersistentField.ClassField.Name;
+			idParam.Value = mapp.IdMapping.PersistentField.ClassField.GetValue (obj);
 			int affectedRows = cmd.ExecuteNonQuery();
 		}
 		

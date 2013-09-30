@@ -30,7 +30,7 @@ namespace Mono.Mlo
 		private T mapEntityProperties<T>(DataRow row, ClassMapping mapping) where T : new () {
 			T instance = Activator.CreateInstance<T>();
 			foreach (FieldMapping fieldMap in mapping.PropertyMappings) {
-				fieldMap.Field.Field.SetValue(instance, row[fieldMap.Column.Name]);
+				fieldMap.PersistentField.ClassField.SetValue(instance, row[fieldMap.Column.Name]);
 			}
 			return instance;
 		}

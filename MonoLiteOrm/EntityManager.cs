@@ -34,7 +34,7 @@ namespace Mono.Mlo
 			idParam.Value = id;
 			cmd.Prepare();
 			IDataReader reader = cmd.ExecuteReader();
-			DataSet dataSet = dataSetFiller.queryResultToDataSet(reader, classMapping.CorrespondingTable);
+			DataSet dataSet = dataSetFiller.queryResultToDataSet(reader, classMapping.CorrespondingTable.PartOfTable);
 			return adapt.toEntity<T>(dataSet, classMapping);
 		}
 		
@@ -52,8 +52,8 @@ namespace Mono.Mlo
 			cmd.Prepare();
 			int affectedRows = cmd.ExecuteNonQuery();
 			// Sqlite only
-			if (mapp.IdMapping.ClassField.GetValue (obj) == null) {
-				mapp.IdMapping.ClassField.SetValue (obj, ((SqliteConnection) con).LastInsertRowId);
+			if (mapp.GetIdValue (obj) == null) {
+				mapp.SetIdValue (obj, ((SqliteConnection) con).LastInsertRowId);
 			}
 		}
 		

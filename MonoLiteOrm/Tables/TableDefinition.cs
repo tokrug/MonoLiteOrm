@@ -9,6 +9,7 @@ namespace Mono.Mlo
 	/// Table definition.
 	/// 
 	/// Contains all information about tables in the database based on attributes present in class definition.
+	/// It is a physical table. With all foreign keys and such included.
 	/// </summary>
 	public class TableDefinition
 	{

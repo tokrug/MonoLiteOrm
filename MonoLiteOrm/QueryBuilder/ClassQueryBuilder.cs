@@ -67,6 +67,15 @@ namespace Mono.Mlo
 			return builder.ToQueryString ();
 		}
 		
+		private Query selectAllQuery(LogicalTable propTable) {
+			Query query = new Query();
+			foreach (TableColumn col in propTable.GetColumns()) {
+				query.Select.SelectedColumns.Add (Select.Column(propTable.Name, col.Name));
+			}
+			query.From.Source = From.Table (propTable.Name);
+			return query;
+		}
+		
 	}
 }
 

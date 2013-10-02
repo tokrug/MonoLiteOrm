@@ -27,18 +27,18 @@ namespace Mono.Mlo
 		private string joinTypeToString(JoinType type) {
 			string result = "";
 			switch (JoinType) {
-			case JoinType.INNERJOIN: {
-				result = "INNER JOIN";
-				break;
-			}
-			case JoinType.CROSSJOIN: {
-				result = "CROSS JOIN";	
-				break;
-			}
-			case JoinType.LEFTJOIN: { 
-				result = "LEFT JOIN";
-				break;
-			}
+				case JoinType.INNERJOIN: {
+					result = "INNER JOIN";
+					break;
+				}
+				case JoinType.CROSSJOIN: {
+					result = "CROSS JOIN";	
+					break;
+				}
+				case JoinType.LEFTJOIN: { 
+					result = "LEFT JOIN";
+					break;
+				}
 			}
 			return result;
 		}

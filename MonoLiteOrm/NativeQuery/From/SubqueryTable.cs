@@ -12,6 +12,10 @@ namespace Mono.Mlo
 		{
 		}
 		
+		public virtual ColumnExpression GetColumn(string columnName) {
+			return new ColumnExpression() {Table = Alias, Column = columnName};
+		}
+		
 		public virtual string ToQueryString() {
 			return "(" + Query.ToQueryString() + ")" + (Alias == null ? "" : " " + Alias);
 		}

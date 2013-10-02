@@ -10,15 +10,13 @@ namespace Mono.Mlo
 	public class TableColumn
 	{
 		
-		private TableColumn referencedColumn;
-		
 		public virtual TableDefinition Table {get;set;}
 		public virtual string Name {get;set;}
 		public virtual string Type {get;set;}
-		// if foreign key
-		public virtual TableColumn ReferencedColumn {get{return this.referencedColumn;}}
 		public virtual bool IsPrimaryKey {get;set;}
 		public virtual bool IsForeignKey {get;set;}
+		// if foreign key
+		public virtual TableColumn ReferencedColumn {get;set;}
 		
 		public TableColumn ()
 		{

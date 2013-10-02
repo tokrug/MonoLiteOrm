@@ -32,7 +32,7 @@ namespace Mono.Mlo
 		public virtual string getSchemaScript() {
 			StringBuilder build = new StringBuilder();
 			foreach (ClassMapping<object> map in mappings.GetMappings()) {
-				build.Append (map.CorrespondingTable.getTableSchema()).AppendLine();
+				build.Append (map.CorrespondingTable.PartOfTable.getTableSchema()).AppendLine();
 			}
 			return build.ToString();
 		}

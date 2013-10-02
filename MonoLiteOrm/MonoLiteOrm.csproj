@@ -35,6 +35,9 @@
     <Reference Include="Mono.Data.SqliteClient">
       <HintPath>..\..\..\Unity Projects\DatGame\Assets\SQLite\Mono.Data.SqliteClient.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>C:\Users\Edhendil\Downloads\Castle.Windsor.3.2.0\net35\Castle.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -106,6 +109,13 @@
     <Compile Include="NativeQuery\Expression\AsteriskLiteral.cs" />
     <Compile Include="Config\AssemblyMapping.cs" />
     <Compile Include="Config\RelationMapping.cs" />
+    <Compile Include="Tables\LogicalTable.cs" />
+    <Compile Include="Tables\LogicalColumn.cs" />
+    <Compile Include="LogicalQuery\LogicalQuery.cs" />
+    <Compile Include="LogicalQuery\LogicalQueryBuilder.cs" />
+    <Compile Include="Utilities\Tree\Tree.cs" />
+    <Compile Include="Utilities\Tree\TreeNode.cs" />
+    <Compile Include="LogicalQuery\LogicalQueryTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -123,5 +133,7 @@
     <Folder Include="NativeQuery\Group\" />
     <Folder Include="NativeQuery\Where\" />
     <Folder Include="NativeQuery\Expression\" />
+    <Folder Include="LogicalQuery\" />
+    <Folder Include="Utilities\Tree\" />
   </ItemGroup>
 </Project>

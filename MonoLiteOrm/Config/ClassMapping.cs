@@ -15,9 +15,12 @@ namespace Mono.Mlo
 		private Dictionary<FieldInfo, FieldMapping<T, object>> propertyMappings = new Dictionary<FieldInfo, FieldMapping<T, object>>();
 		private List<FieldMapping<T, object>> propMappings = new List<FieldMapping<T, object>>();
 		
+		private Dictionary<FieldInfo, RelationMapping<T, object>> relationMappings = new Dictionary<FieldInfo, RelationMapping<T, object>>();
+		private List<RelationMapping<T, object>> relMappings = new List<RelationMapping<T, object>>();
+		
 		public virtual FieldMapping<T, object> IdMapping {get;set;}
 		public virtual Type ClassType {get;set;}
-		public virtual TableDefinition CorrespondingTable {get;set;}
+		public virtual LogicalTable CorrespondingTable {get;set;}
 		
 		public ClassMapping() {}
 		
@@ -34,6 +37,15 @@ namespace Mono.Mlo
 		
 		public ReadOnlyCollection<FieldMapping<T, object>> GetPropertyMappings() {
 			return new ReadOnlyCollection<FieldMapping<T, object>>(this.propMappings);
+		}
+		
+		public virtual void AddRelationMapping(RelationMapping<T, object> mapping) {
+			relMappings.Add (mapping);
+			relationMappings.Add (mapping.ClassField, mapping);
+		}
+		
+		public ReadOnlyCollection<RelationMapping<T, object>> GetRelationMappings() {
+			return new ReadOnlyCollection<RelationMapping<T, object>>(this.relMappings);	
 		}
 		
 		public virtual object GetIdValue(T obj) {

@@ -15,20 +15,28 @@ namespace Mono.Mlo
 			// type
 			mapping.ClassType = type;
 			// table
+			LogicalTable logicalTable = new LogicalTable();
+			mapping.CorrespondingTable = logicalTable;
+			
 			TableDefinition table = new TableDefinition();
-			mapping.CorrespondingTable = table;
+			
 			Table tableAttr = AttributeUtils.getSingleAttribute<Table>(type);
 			if (tableAttr != null) {
 				table.Name = tableAttr.Name;
 			} else {
 				table.Name = generateTableName(type.Name);
 			}
+			
+			logicalTable.Name = table.Name;
+			
 			// all fields including id
 			foreach (FieldInfo field in type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
 				if (isFieldPersistent(field)) {
 					FieldMapping<object, object> fieldMapping = new FieldMapping<object, object>() {ClassField = field};
 					
+					
 					TableColumn column = new TableColumn();
+					logicalTable.AddColumn(column);
 					Column colAttr = AttributeUtils.getSingleAttribute<Column>(field);
 					if (colAttr != null) {
 						column.Name = colAttr.Name;

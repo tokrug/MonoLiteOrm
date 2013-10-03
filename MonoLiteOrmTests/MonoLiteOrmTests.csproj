@@ -53,10 +53,12 @@
     <Compile Include="Query\WhereClauseTest.cs" />
     <Compile Include="Query\GroupByTest.cs" />
     <Compile Include="LogicalQuery\LogicalQueryTest.cs" />
+    <Compile Include="Utils\TreeTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Query\" />
     <Folder Include="LogicalQuery\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>

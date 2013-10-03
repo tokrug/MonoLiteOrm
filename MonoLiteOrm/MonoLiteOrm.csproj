@@ -111,7 +111,6 @@
     <Compile Include="Config\RelationMapping.cs" />
     <Compile Include="Tables\LogicalTable.cs" />
     <Compile Include="LogicalQuery\LogicalQuery.cs" />
-    <Compile Include="LogicalQuery\LogicalQueryBuilder.cs" />
     <Compile Include="Utilities\Tree\Tree.cs" />
     <Compile Include="Utilities\Tree\TreeNode.cs" />
     <Compile Include="LogicalQuery\LogicalQueryTable.cs" />

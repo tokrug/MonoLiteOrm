@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Mono.Mlo
 {
@@ -18,6 +19,10 @@ namespace Mono.Mlo
 		
 		public TableReference ToTableReference() {
 			return From.Table (Table.PartOfTable.Name, Alias);
+		}
+		
+		public bool IsLogicalTableEqual(LogicalQueryTable queryTable) {
+			return Table.IsPartOfTheSameTable(queryTable.Table);
 		}
 		
 	}

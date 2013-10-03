@@ -34,6 +34,8 @@ namespace Mono.Mlo
 		// it will be used as an identifier in dataset
 		public virtual string Name {get;set;}
 		
+		public virtual LogicalTableType TableType {get;set;}
+		
 		// all columns must come from the same physical table
 		public virtual TableDefinition PartOfTable {get;set;}
 		

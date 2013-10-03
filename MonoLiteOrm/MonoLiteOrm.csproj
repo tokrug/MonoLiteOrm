@@ -110,12 +110,13 @@
     <Compile Include="Config\AssemblyMapping.cs" />
     <Compile Include="Config\RelationMapping.cs" />
     <Compile Include="Tables\LogicalTable.cs" />
-    <Compile Include="Tables\LogicalColumn.cs" />
     <Compile Include="LogicalQuery\LogicalQuery.cs" />
     <Compile Include="LogicalQuery\LogicalQueryBuilder.cs" />
     <Compile Include="Utilities\Tree\Tree.cs" />
     <Compile Include="Utilities\Tree\TreeNode.cs" />
     <Compile Include="LogicalQuery\LogicalQueryTable.cs" />
+    <Compile Include="Tables\LogicalTableType.cs" />
+    <Compile Include="LogicalQuery\PhysicalQueryTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

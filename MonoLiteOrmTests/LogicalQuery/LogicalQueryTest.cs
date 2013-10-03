@@ -27,16 +27,16 @@ namespace MonoLiteOrmTests
 			secondEntity.addColumn(pk2);
 			secondEntity.addColumn(fk1);
 			
-			LogicalTable log1 = new LogicalTable() {Name = "Entity_Prop", PartOfTable = entityTable};
+			LogicalTable log1 = new LogicalTable() {Name = "Entity_Prop", PartOfTable = entityTable, TableType = LogicalTableType.ENTITY};
 			log1.AddColumn(pk1);
 			log1.AddColumn(name1);
 			log1.AddColumn(name2);
 			
-			LogicalTable log2 = new LogicalTable() {Name = "Entity_SecondEntity", PartOfTable = secondEntity};
+			LogicalTable log2 = new LogicalTable() {Name = "Entity_SecondEntity", PartOfTable = secondEntity, TableType = LogicalTableType.JOIN};
 			log2.AddColumn(pk2);
 			log2.AddColumn(fk1);
 			
-			LogicalTable log3 = new LogicalTable() {Name = "SecondEntity_Prop", PartOfTable = secondEntity};
+			LogicalTable log3 = new LogicalTable() {Name = "SecondEntity_Prop", PartOfTable = secondEntity, TableType = LogicalTableType.ENTITY};
 			log3.AddColumn(pk2);
 			
 			TableDefinition thirdEntity = new TableDefinition() {Name = "ThirdEntity"};
@@ -49,11 +49,11 @@ namespace MonoLiteOrmTests
 			joinTable.addColumn(join1);
 			joinTable.addColumn(join2);
 			
-			LogicalTable log4 = new LogicalTable() {Name = "SecondEntity_ThirdEntity", PartOfTable = joinTable};
+			LogicalTable log4 = new LogicalTable() {Name = "SecondEntity_ThirdEntity", PartOfTable = joinTable, TableType = LogicalTableType.JOIN};
 			log4.AddColumn(join1);
 			log4.AddColumn(join2);
 			
-			LogicalTable log5 = new LogicalTable() {Name = "ThirdEntity", PartOfTable = thirdEntity};
+			LogicalTable log5 = new LogicalTable() {Name = "ThirdEntity", PartOfTable = thirdEntity, TableType = LogicalTableType.ENTITY};
 			log5.AddColumn(pk3);
 			
 			query.JoinTable (log1);

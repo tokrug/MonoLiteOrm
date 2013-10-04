@@ -39,9 +39,9 @@
     <Reference Include="MonoLiteOrm">
       <HintPath>..\MonoLiteOrm\bin\Debug\MonoLiteOrm.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetTest.cs" />
     <Compile Include="TableColumnTest.cs" />
     <Compile Include="TableDefinitionTest.cs" />
     <Compile Include="Query\ConditionsTest.cs" />
@@ -54,11 +54,14 @@
     <Compile Include="Query\GroupByTest.cs" />
     <Compile Include="LogicalQuery\LogicalQueryTest.cs" />
     <Compile Include="Utils\TreeTest.cs" />
+    <Compile Include="DataSet\DataSetTest.cs" />
+    <Compile Include="DataSet\DataSetFillerTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Query\" />
     <Folder Include="LogicalQuery\" />
     <Folder Include="Utils\" />
+    <Folder Include="DataSet\" />
   </ItemGroup>
 </Project>

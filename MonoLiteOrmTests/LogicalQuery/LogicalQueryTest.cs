@@ -11,7 +11,7 @@ namespace MonoLiteOrmTests
 		public void TestCase ()
 		{
 			
-			LogicalQuery query = new LogicalQuery();
+			LogicalQueryBuilder query = new LogicalQueryBuilder();
 			
 			TableDefinition entityTable = new TableDefinition() {Name = "Entity"};
 			TableColumn pk1 = new TableColumn() {IsPrimaryKey = true, Name = "id1"};

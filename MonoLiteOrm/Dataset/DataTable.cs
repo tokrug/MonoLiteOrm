@@ -4,13 +4,15 @@ using System.Collections.Generic;
 namespace Mono.Mlo
 {
 	/// <summary>
-	/// Data table.
+	/// Data table. Holds primitive data types. No objects allowed.
 	/// </summary>
 	public class DataTable
 	{
 		
 		private List<DataColumn> columns = new List<DataColumn>();
 		private List<DataRow> rows = new List<DataRow>();
+		
+		private List<IConstraint> constraints = new List<IConstraint>();
 		
 		public virtual string Name {get;set;}
 		public virtual List<DataColumn> Columns {get{return this.columns;}}
@@ -21,10 +23,36 @@ namespace Mono.Mlo
 		{
 		}
 		
-		public virtual DataRow addRow() {
+		// if any of the constraints is violated then this is no op
+		public virtual bool AddRow(DataRow row) {
+			if (checkConstraints(row)) {
+				updateConstraints(row);
+				this.rows.Add (row);
+				return true;
+			}
+			return false;
+		}
+		
+		public virtual DataRow CreateRow() {
 			DataRow row = new DataRow() {Table = this};
-			this.rows.Add (row);
 			return row;
+		}
+		
+		public virtual void AddColumn (DataColumn column) {
+			this.Columns.Add (column);
+			column.Table = this;
+		}
+		
+		public void AddConstraint(IConstraint constraint) {
+			this.constraints.Add (constraint);
+		}
+		
+		private bool checkConstraints(DataRow row) {
+			return this.constraints.TrueForAll((x)=>x.validate(row));
+		}
+		
+		private void updateConstraints(DataRow row) {
+			this.constraints.ForEach((x)=>x.addRow(row));
 		}
 	}
 }

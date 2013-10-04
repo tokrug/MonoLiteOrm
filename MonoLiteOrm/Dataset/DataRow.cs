@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 namespace Mono.Mlo
@@ -38,6 +39,54 @@ namespace Mono.Mlo
 				DataColumn col = Table.Columns.Find ((x) => x.Name == columnName);
 				this.values[col] = value;
 			}
+		}
+		
+		public virtual bool IsEmpty() {
+			foreach (DataColumn col in Table.Columns) {
+				if (values[col] != null)
+					return false;
+			}
+			return true;
+		}
+		
+		public override int GetHashCode ()
+		{
+			unchecked // Overflow is fine, just wrap
+		    {
+		        int hash = 17;
+				foreach (DataColumn col in Table.Columns) {
+					hash = hash * 23 + values[col].GetHashCode();	
+				}
+		        return hash;
+		    }
+		}
+		
+		public override bool Equals (object obj)
+		{
+			
+			var item = obj as DataRow;
+			
+			if (item == null)
+				return false;
+			
+			foreach (DataColumn col in Table.Columns) {
+				if (!item.values[col].Equals (values[col]))
+					return false;
+			}
+			
+			return true;
+			
+		}
+		
+		public override string ToString ()
+		{
+			StringBuilder builder = new StringBuilder();
+			builder.Append ("DataRow: ");
+			foreach (DataColumn col in Table.Columns) {
+				builder.Append (col.Name + " = " + values[col].ToString () + ", ");
+			}
+			builder.Remove(builder.Length-2,2);
+			return builder.ToString ();
 		}
 		
 	}

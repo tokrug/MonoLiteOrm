@@ -30,7 +30,7 @@ namespace Mono.Mlo
 			logicalTable.Name = table.Name;
 			
 			// all fields including id
-			foreach (FieldInfo field in type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
+			foreach (FieldInfo field in getClassFields(type)) {
 				if (isFieldPersistent(field)) {
 					FieldMapping<object, object> fieldMapping = new FieldMapping<object, object>() {ClassField = field};
 					
@@ -55,6 +55,10 @@ namespace Mono.Mlo
 				}
 			}
 			return mapping;
+		}
+		
+		private FieldInfo[] getClassFields(Type type) {
+			return type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 		}
 		
 		private string generateTableName(string className) {

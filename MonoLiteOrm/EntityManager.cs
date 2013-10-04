@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Data;
+using System.Collections.Generic;
 using Mono.Data.SqliteClient;
 
 namespace Mono.Mlo
@@ -13,7 +14,6 @@ namespace Mono.Mlo
 		
 		private Transaction transaction;
 		
-		private DataSetFiller dataSetFiller = new DataSetFiller();
 		private EntityAdapter adapt = new EntityAdapter();
 		private ClassQueryBuilder queryBuilder = new ClassQueryBuilder();
 		
@@ -23,18 +23,27 @@ namespace Mono.Mlo
 			this.mapping = mappings;
 		}
 		
+		public virtual List<T> load<T>() where T : new() {
+			List<T> result = new List<T>();
+			
+			
+			
+			return result;
+		}
+		
 		public virtual T load<T>(int id) where T : new() {
+			DataSetFiller dataSetFiller = new DataSetFiller();
 			ClassMapping<T> classMapping = mapping.GetMapping<T>();
-			string query = this.queryBuilder.selectByIdQuery(classMapping);
+			LogicalQuery query = classMapping.SelectSingleQuery;
 			IDbCommand cmd = con.CreateCommand();
-			cmd.CommandText = query;
+			cmd.CommandText = query.NativeQuery;
 			IDataParameter idParam = cmd.CreateParameter();
 			cmd.Parameters.Add (idParam);
 			idParam.ParameterName = classMapping.IdMapping.ClassField.Name;
 			idParam.Value = id;
 			cmd.Prepare();
 			IDataReader reader = cmd.ExecuteReader();
-			DataSet dataSet = dataSetFiller.queryResultToDataSet(reader, classMapping.CorrespondingTable.PartOfTable);
+			DataSet dataSet = dataSetFiller.AddData(reader, query.LogicalTables).GetDataSet();
 			return adapt.toEntity<T>(dataSet, classMapping);
 		}
 		

@@ -38,6 +38,7 @@
     <Reference Include="Castle.Core">
       <HintPath>C:\Users\Edhendil\Downloads\Castle.Windsor.3.2.0\net35\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -110,12 +111,18 @@
     <Compile Include="Config\AssemblyMapping.cs" />
     <Compile Include="Config\RelationMapping.cs" />
     <Compile Include="Tables\LogicalTable.cs" />
-    <Compile Include="LogicalQuery\LogicalQuery.cs" />
     <Compile Include="Utilities\Tree\Tree.cs" />
     <Compile Include="Utilities\Tree\TreeNode.cs" />
     <Compile Include="LogicalQuery\LogicalQueryTable.cs" />
     <Compile Include="Tables\LogicalTableType.cs" />
     <Compile Include="LogicalQuery\PhysicalQueryTable.cs" />
+    <Compile Include="Attributes\OneToMany.cs" />
+    <Compile Include="Attributes\ManyToOne.cs" />
+    <Compile Include="LogicalQuery\LogicalQueryBuilder.cs" />
+    <Compile Include="LogicalQuery\LogicalQuery.cs" />
+    <Compile Include="Dataset\IConstraint.cs" />
+    <Compile Include="Dataset\UniqueRowConstraint.cs" />
+    <Compile Include="Dataset\UniqueColumnConstraint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

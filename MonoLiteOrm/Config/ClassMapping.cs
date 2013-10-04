@@ -22,6 +22,10 @@ namespace Mono.Mlo
 		public virtual Type ClassType {get;set;}
 		public virtual LogicalTable CorrespondingTable {get;set;}
 		
+		// cached queries, they won't change
+		public virtual LogicalQuery SelectAllQuery {get;set;}
+		public virtual LogicalQuery SelectSingleQuery {get;set;}
+		
 		public ClassMapping() {}
 		
 		/// <summary>
